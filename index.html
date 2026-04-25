@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcs Bot</title>
+<style>
+:root{
+  --gold:#c9a84c;--gdim:#7a5e2a;--gfaint:#1e1a0e;
+  --bg:#080808;--s1:#111;--s2:#181818;--s3:#202020;
+  --bord:#242424;--bord2:#2e2e2e;
+  --text:#ddd8ce;--dim:#666;--muted:#2a2a2a;
+  --c0:#c0392b;--c1:#2471a3;--c2:#d4800a;--c3:#c9a84c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;min-height:100vh}
+.screen{display:none}.screen.active{display:block}
+.hidden{display:none!important}
+
+.top{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--bord);background:var(--s1)}
+.logo{font-family:Georgia,serif;font-size:1.35rem;letter-spacing:.32em;color:var(--gold)}
+.logosub{font-size:.55rem;letter-spacing:.22em;color:var(--dim);text-transform:uppercase;margin-top:1px}
+
+.btn{padding:5px 12px;background:transparent;border:1px solid var(--bord2);color:var(--dim);cursor:pointer;border-radius:3px;font-size:12px;transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--gdim);color:var(--text)}.btn.on{border-color:var(--gold);color:var(--gold);background:var(--gfaint)}
+.btn.pri{border-color:var(--gdim);color:var(--gold)}.btn.pri:hover{background:var(--gfaint)}
+.btn.sm{padding:3px 8px;font-size:11px}.btn:disabled{opacity:.3;cursor:default}
+.bg{display:flex;gap:4px;flex-wrap:wrap}
+
+.tabs{display:flex;border-bottom:1px solid var(--bord);background:var(--s1)}
+.tb{flex:1;padding:9px 4px;font-size:11px;letter-spacing:.08em;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--dim);cursor:pointer;transition:all .15s;text-transform:uppercase}
+.tb.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+.swrap{max-width:580px;margin:0 auto;padding:1rem}
+.sec{margin-bottom:.85rem;padding:.85rem 1rem;background:var(--s1);border:1px solid var(--bord);border-radius:4px}
+.stl{font-size:8px;letter-spacing:.22em;color:var(--gdim);text-transform:uppercase;margin-bottom:7px}
+.infot{font-size:11px;color:var(--dim);margin-top:5px;line-height:1.4}
+.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:3px}
+.cbt{aspect-ratio:2/3;border-radius:2px;border:1px solid var(--bord2);background:var(--s2);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--dim);transition:all .1s}
+.cbt:hover:not([disabled]){border-color:var(--dim);color:var(--text)}.cbt .pp{font-size:6px;opacity:.5;margin-top:1px}
+.cbt.S{color:#000}.cbt.off{opacity:.18;cursor:not-allowed}
+.cbt.s0:not(.S){border-top:2px solid #888}.cbt.s0.S{background:#888;border-color:#888}
+.cbt.s1:not(.S){border-top:2px solid var(--c0)}.cbt.s1.S{background:var(--c0);border-color:var(--c0)}
+.cbt.s2:not(.S){border-top:2px solid var(--gold)}.cbt.s2.S{background:var(--gold);border-color:var(--gold)}
+.cbt.s3:not(.S){border-top:2px solid #2a8070}.cbt.s3.S{background:#2a8070;border-color:#2a8070}
+.rg{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.ri{display:flex;flex-direction:column;align-items:center;gap:3px}
+.ri label{font-size:9px;color:var(--dim)}
+.ri input{width:100%;background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:15px;text-align:center;padding:4px;border-radius:2px}
+.ambs{display:flex;gap:5px;flex-wrap:wrap}
+.ab{font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid var(--bord2);background:transparent;color:var(--dim);cursor:pointer;transition:all .15s}
+.ab.on{border-color:var(--gold);color:var(--gold);background:var(--gfaint)}
+
+#tab-map{background:var(--bg)}
+.mscroll{overflow-x:auto;padding:14px 16px 8px}
+.mouter{position:relative;width:560px;height:524px;margin:0 auto}
+#msvg{position:absolute;top:0;left:0;width:560px;height:524px;pointer-events:none}
+.mhint{text-align:center;padding:6px 0 10px;font-size:11px;color:var(--dim)}
+
+.cl{position:absolute;width:132px;background:var(--s1);border:1px solid var(--bord);border-radius:5px}
+.cl.oop{opacity:.3}
+.clhdr{display:flex;align-items:center;justify-content:space-between;padding:4px 8px;border-bottom:1px solid var(--bord);background:var(--s2);border-radius:5px 5px 0 0}
+.cln{font-family:Georgia,serif;font-size:12px;color:var(--gold);letter-spacing:.05em}
+.oopt{font-size:8px;padding:1px 5px;border:1px solid var(--bord2);background:transparent;color:var(--dim);cursor:pointer;border-radius:2px;transition:all .12s}
+.oopt.on{border-color:rgba(192,57,43,.6);color:var(--c0)}
+
+.gaten{margin:5px 7px 3px;padding:5px 7px;background:var(--s2);border:1px solid var(--bord2);border-radius:3px;cursor:pointer;transition:border-color .12s;min-height:36px}
+.gaten:hover,.gaten.act{border-color:var(--gold)}.gaten.act{background:var(--gfaint)}
+.plrow{display:flex;gap:3px;padding:0 5px 6px}
+.pln{flex:1;padding:3px 2px;background:var(--s2);border:1px solid var(--bord2);border-radius:3px;cursor:pointer;min-height:32px;transition:border-color .12s}
+.pln:hover,.pln.act{border-color:var(--gold)}.pln.act{background:var(--gfaint)}
+.nl{font-size:7px;color:var(--dim);text-align:center;margin-bottom:2px;letter-spacing:.05em}
+.np{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;min-height:13px}
+.ndot{display:inline-flex;align-items:center;justify-content:center;min-width:14px;height:14px;border-radius:2px;font-size:9px;font-weight:700;padding:0 2px;line-height:1}
+.ndotD{opacity:.45}
+.nb{display:flex;gap:2px;justify-content:center;margin-top:2px}
+.nic{font-size:9px;line-height:1}
+
+#epan{position:fixed;background:var(--s1);border:1px solid var(--gold);border-radius:6px;padding:11px 13px;z-index:500;width:218px;box-shadow:0 8px 32px rgba(0,0,0,.8)}
+.ephdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
+.eptitle{font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.epx{background:transparent;border:none;color:var(--dim);cursor:pointer;font-size:18px;line-height:1;padding:0}
+.eprow{display:flex;align-items:center;gap:5px;margin-bottom:5px;padding-bottom:5px;border-bottom:1px solid var(--bord)}
+.eprow:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.eppn{font-size:10px;font-weight:700;width:30px;flex-shrink:0}
+.sp{display:flex;align-items:center;gap:2px}
+.sp button{width:18px;height:18px;background:var(--s2);border:1px solid var(--bord2);color:var(--text);cursor:pointer;border-radius:2px;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0;transition:border-color .1s}
+.sp button:hover{border-color:var(--gdim)}
+.sp span{width:14px;text-align:center;font-size:12px}
+.blt{font-size:10px;padding:2px 5px;border:1px solid var(--bord2);background:transparent;color:var(--dim);cursor:pointer;border-radius:2px;transition:all .12s}
+.blt.on{border-color:var(--gold);color:var(--gold)}
+.epmini{font-size:8px;color:var(--dim);letter-spacing:.1em;margin:0 0 3px;text-align:center}
+
+.twrap{max-width:580px;margin:0 auto;padding:.8rem}
+.tsec{margin-bottom:.8rem;padding:.85rem 1rem;background:var(--s1);border:1px solid var(--bord);border-radius:4px}
+.hchs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.hch{padding:3px 8px;border-radius:3px;font-size:11px;font-weight:700;border:1px solid transparent;cursor:default}
+.hch.s0{background:rgba(136,136,136,.12);border-color:#888;color:#888}
+.hch.s1{background:rgba(192,57,43,.12);border-color:var(--c0);color:var(--c0)}
+.hch.s2{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--gold)}
+.hch.s3{background:rgba(42,128,112,.12);border-color:#2a8070;color:#2a8070}
+select{background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:13px;padding:5px 8px;border-radius:3px;cursor:pointer}
+select:focus{outline:none;border-color:var(--gdim)}
+textarea{width:100%;min-height:60px;background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:13px;line-height:1.5;padding:8px;border-radius:3px;resize:vertical;font-family:inherit}
+textarea:focus{outline:none;border-color:var(--gdim)}
+textarea::placeholder{color:#333}
+
+.dbox{display:none;padding:.9rem 1rem;background:var(--s2);border:1px solid var(--bord);border-left:2px solid var(--gold);border-radius:4px;margin-top:.8rem}
+.dn{font-size:19px;font-weight:700;color:var(--gold);margin-bottom:3px}
+.dt{font-size:9px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-bottom:9px}
+.dmini{font-size:8px;letter-spacing:.18em;color:var(--gdim);text-transform:uppercase;margin:8px 0 4px}
+.dacts{list-style:none}
+.dacts li{padding:4px 0;border-bottom:1px solid var(--bord);font-size:13px;line-height:1.4}
+.dacts li:last-child{border-bottom:none}
+.dreason{font-size:12px;color:var(--dim);font-style:italic;margin-top:8px;line-height:1.5}
+.dots{display:flex;gap:5px;align-items:center;height:20px}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--gdim);animation:pu 1.2s ease-in-out infinite}
+.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+@keyframes pu{0%,100%{opacity:.2}50%{opacity:1}}
+</style>
+</head>
+<body>
+
+<div id="s0" class="screen active">
+<div class="top">
+  <div><div class="logo">ARCS</div><div class="logosub">Bot-spelare · Setup</div></div>
+</div>
+<div class="swrap">
+<div class="sec">
+  <div class="stl">Antal spelare (inkl. boten)</div>
+  <div class="bg" id="pcb">
+    <button class="btn" onclick="setPC(2)">2</button>
+    <button class="btn on" onclick="setPC(3)">3</button>
+    <button class="btn" onclick="setPC(4)">4</button>
+  </div>
+  <div class="infot" id="pci">Med 3 spelare används kort 2–6.</div>
+</div>
+<div class="sec">
+  <div class="stl">Bot-strategi</div>
+  <div class="bg" id="stb">
+    <button class="btn" onclick="setSt('aggressive')">⚔ Aggressiv</button>
+    <button class="btn on" onclick="setSt('balanced')">⚖ Balanserad</button>
+    <button class="btn" onclick="setSt('economic')">🏗 Ekonomisk</button>
+  </div>
+  <div class="infot" id="sti">Adaptiv: boten väljer strategi efter situationen.</div>
+</div>
+<div class="sec">
+  <div class="stl">Bot's hand — välj 6 kort <span id="hc" style="color:var(--gdim)">(0/6)</span></div>
+  <div id="picker"></div>
+  <div style="margin-top:8px"><button class="btn pri" onclick="randH()">Slumpa 6 kort</button></div>
+</div>
+<div class="sec">
+  <div class="stl">Bot's resurser vid kapitelstart</div>
+  <div class="rg">
+    <div class="ri"><label>Material</label><input type="number" id="r0" min="0" max="5" value="0"></div>
+    <div class="ri"><label>Fuel</label><input type="number" id="r1" min="0" max="5" value="0"></div>
+    <div class="ri"><label>Weapon</label><input type="number" id="r2" min="0" max="5" value="0"></div>
+    <div class="ri"><label>Relic</label><input type="number" id="r3" min="0" max="5" value="0"></div>
+    <div class="ri"><label>Psionic</label><input type="number" id="r4" min="0" max="5" value="0"></div>
+  </div>
+</div>
+<div class="sec">
+  <div class="stl">Deklarerade ambitioner</div>
+  <div class="ambs">
+    <button class="ab" data-a="Tycoon" onclick="togA(this)">Tycoon</button>
+    <button class="ab" data-a="Tyrant" onclick="togA(this)">Tyrant</button>
+    <button class="ab" data-a="Warlord" onclick="togA(this)">Warlord</button>
+    <button class="ab" data-a="Keeper" onclick="togA(this)">Keeper</button>
+    <button class="ab" data-a="Empath" onclick="togA(this)">Empath</button>
+  </div>
+</div>
+<button class="btn pri" style="width:100%;padding:11px;font-size:14px" onclick="startGame()">Starta spelet →</button>
+</div>
+</div>
+
+<div id="s1" class="screen">
+<div class="top">
+  <div><div class="logo">ARCS</div><div class="logosub" id="psub">Bot-spelare</div></div>
+  <div style="display:flex;gap:6px">
+    <button class="btn sm" onclick="backSetup()">← Setup</button>
+    <button class="btn sm on" onclick="newChap()">Nytt kapitel</button>
+  </div>
+</div>
+<div class="tabs">
+  <button class="tb on" onclick="showTab('map')">Karta</button>
+  <button class="tb" onclick="showTab('turn')">Bot's Tur</button>
+</div>
+
+<div id="tab-map">
+  <div class="mscroll">
+    <div class="mouter" id="mouter">
+      <svg id="msvg" viewBox="0 0 560 524"></svg>
+    </div>
+  </div>
+  <div class="mhint">Klicka på ett system för att redigera pjäser &nbsp;·&nbsp; ■ = stad &nbsp;·&nbsp; △ = starport</div>
+</div>
+
+<div id="tab-turn" class="hidden">
+<div class="twrap">
+  <div class="tsec">
+    <div class="stl">Bot's hand</div>
+    <div class="hchs" id="hchs"></div>
+    <div class="stl" style="margin-top:5px">Bot's resurser</div>
+    <div class="rg" style="margin-top:4px">
+      <div class="ri"><label>Material</label><input type="number" id="tr0" min="0" max="5" value="0"></div>
+      <div class="ri"><label>Fuel</label><input type="number" id="tr1" min="0" max="5" value="0"></div>
+      <div class="ri"><label>Weapon</label><input type="number" id="tr2" min="0" max="5" value="0"></div>
+      <div class="ri"><label>Relic</label><input type="number" id="tr3" min="0" max="5" value="0"></div>
+      <div class="ri"><label>Psionic</label><input type="number" id="tr4" min="0" max="5" value="0"></div>
+    </div>
+  </div>
+  <div class="tsec">
+    <div class="stl">Runda-info</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--dim)">Har boten initiative?</span>
+      <div class="bg"><button class="btn sm" id="iy" onclick="setInit(true)">Ja</button><button class="btn sm on" id="in" onclick="setInit(false)">Nej</button></div>
+    </div>
+    <div id="lsec">
+      <div class="stl" style="margin-bottom:5px">Lead-kortets suit och nummer</div>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <select id="ls"><option>Administration</option><option>Aggression</option><option>Construction</option><option>Mobilization</option></select>
+        <select id="ln"></select>
+      </div>
+    </div>
+    <div class="stl" style="margin-bottom:5px">Extra kontext (valfritt)</div>
+    <textarea id="ctx" placeholder="Skriv om något viktigt som hänt den här rundan..."></textarea>
+  </div>
+  <button class="btn pri" id="askbtn" onclick="askBot()" style="width:100%;padding:10px;font-size:14px">Vad gör boten? →</button>
+  <div class="dbox" id="dbox">
+    <div class="dn" id="dc"></div>
+    <div class="dt" id="dpt"></div>
+    <div id="damb"></div>
+    <div id="dpre"></div>
+    <div class="dmini">Actions</div>
+    <ul class="dacts" id="dacts"></ul>
+    <div class="dreason" id="dreason"></div>
+    <div style="margin-top:12px">
+      <button class="btn pri" onclick="markDone()">✓ Utfört — ta bort kortet</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div id="epan" class="hidden"></div>
+
+<script>
+const SUITS=['Administration','Aggression','Construction','Mobilization'];
+const SC=['s0','s1','s2','s3'];
+const PIPS={1:1,2:2,3:3,4:3,5:2,6:2,7:1};
+const PCOL=['#888888','#c0392b','#d4800a','#c9a84c'];
+const PNAMES=['Grå','Röd','Orange','Guld'];
+const CPOS=[[214,16],[388,114],[388,312],[214,418],[38,312],[38,114]];
+const ALLSYS=[];
+for(let c=1;c<=6;c++){ALLSYS.push('g'+c);['a','b','c'].forEach(p=>ALLSYS.push(c+p));}
+
+let G={pc:3,botIdx:2,strat:'balanced',hand:[],res:[0,0,0,0,0],ambs:[],oop:new Set(),map:{},lastDec:null};
+ALLSYS.forEach(s=>{G.map[s]={fr:[0,0,0,0],dm:[0,0,0,0],ci:[0,0,0,0],sp:[0,0,0,0]};});
+
+function setPC(n){
+  G.pc=n;G.botIdx=n-1;
+  document.querySelectorAll('#pcb .btn').forEach((b,i)=>b.classList.toggle('on',[2,3,4][i]===n));
+  document.getElementById('pci').textContent=n===4?'Med 4 spelare används kort 1–7.':'Med '+n+' spelare används kort 2–6.';
+  renderPicker();
+}
+function setSt(s){
+  G.strat=s;
+  document.querySelectorAll('#stb .btn').forEach((b,i)=>b.classList.toggle('on',['aggressive','balanced','economic'][i]===s));
+  const d={aggressive:'Krigarstil: prioriterar battle och Warlord.',balanced:'Adaptiv: väljer efter situationen.',economic:'Handelsfokus: resurser och ekonomiska ambitioner.'};
+  document.getElementById('sti').textContent=d[s];
+}
+function renderPicker(){
+  const min=G.pc===4?1:2,max=G.pc===4?7:6;
+  const el=document.getElementById('picker');el.innerHTML='';
+  SUITS.forEach((suit,si)=>{
+    const row=document.createElement('div');row.style.marginBottom='5px';
+    const lbl=document.createElement('div');lbl.style.cssText='font-size:9px;color:var(--dim);margin-bottom:3px';lbl.textContent=suit;
+    row.appendChild(lbl);
+    const grid=document.createElement('div');grid.className='cg';
+    for(let n=1;n<=7;n++){
+      const b=document.createElement('button');b.className=`cbt ${SC[si]}`;
+      b.innerHTML=`${n}<div class="pp">${'◆'.repeat(PIPS[n])}</div>`;
+      if(n<min||n>max){b.classList.add('off');b.disabled=true;}
+      else{if(G.hand.some(c=>c.si===si&&c.n===n))b.classList.add('S');b.onclick=()=>togCard(si,n,b);}
+      grid.appendChild(b);
+    }
+    row.appendChild(grid);el.appendChild(row);
+  });
+  document.getElementById('hc').textContent=`(${G.hand.length}/6)`;
+}
+function togCard(si,n,btn){
+  const idx=G.hand.findIndex(c=>c.si===si&&c.n===n);
+  if(idx>=0){G.hand.splice(idx,1);btn.classList.remove('S');}
+  else{if(G.hand.length>=6){alert('Max 6 kort.');return;}G.hand.push({si,n});btn.classList.add('S');}
+  document.getElementById('hc').textContent=`(${G.hand.length}/6)`;
+}
+function randH(){
+  const min=G.pc===4?1:2,max=G.pc===4?7:6;
+  let pool=[];SUITS.forEach((_,si)=>{for(let n=min;n<=max;n++)pool.push({si,n});});
+  pool.sort(()=>Math.random()-.5);G.hand=pool.slice(0,6);renderPicker();
+}
+function togA(btn){btn.classList.toggle('on');const a=btn.dataset.a;const i=G.ambs.indexOf(a);if(i>=0)G.ambs.splice(i,1);else G.ambs.push(a);}
+function startGame(){
+  if(G.hand.length!==6){alert('Välj exakt 6 kort.');return;}
+  G.res=['r0','r1','r2','r3','r4'].map(id=>parseInt(document.getElementById(id).value)||0);
+  ['tr0','tr1','tr2','tr3','tr4'].forEach((id,i)=>document.getElementById(id).value=G.res[i]);
+  buildLN();renderMap();renderHand();
+  document.getElementById('psub').textContent=`${G.pc} spelare · Bot = ${PNAMES[G.botIdx]}`;
+  showScr('s1');
+}
+function backSetup(){renderPicker();showScr('s0');}
+function newChap(){G.hand=[];G.ambs=[];document.querySelectorAll('.ab').forEach(b=>b.classList.remove('on'));renderPicker();showScr('s0');}
+function showScr(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showTab(t){
+  document.getElementById('tab-map').classList.toggle('hidden',t!=='map');
+  document.getElementById('tab-turn').classList.toggle('hidden',t!=='turn');
+  document.querySelectorAll('.tb').forEach((b,i)=>b.classList.toggle('on',['map','turn'][i]===t));
+  closeEP();
+}
+
+function sysLabel(s){return s[0]==='g'?'Gate '+s[1]:'Planet '+s[0]+s[1].toUpperCase();}
+function renderMap(){
+  const outer=document.getElementById('mouter');
+  outer.querySelectorAll('.cl').forEach(e=>e.remove());
+  const svg=document.getElementById('msvg');svg.innerHTML='';
+  const gc=CPOS.map(([l,t])=>[l+66,t+32]);
+  [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]].forEach(([a,b])=>{
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',gc[a][0]);line.setAttribute('y1',gc[a][1]);
+    line.setAttribute('x2',gc[b][0]);line.setAttribute('y2',gc[b][1]);
+    line.setAttribute('stroke','#2e2a1a');line.setAttribute('stroke-width','1.5');
+    line.setAttribute('stroke-dasharray','5,4');svg.appendChild(line);
+  });
+  const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
+  txt.setAttribute('x','280');txt.setAttribute('y','268');txt.setAttribute('text-anchor','middle');
+  txt.setAttribute('font-family','Georgia,serif');txt.setAttribute('font-size','22');
+  txt.setAttribute('letter-spacing','8');txt.setAttribute('fill','#2a2518');txt.textContent='ARCS';
+  svg.appendChild(txt);
+  for(let c=1;c<=6;c++){
+    const [l,t]=CPOS[c-1];
+    const card=document.createElement('div');card.className='cl';card.id='cl'+c;
+    if(G.oop.has(c))card.classList.add('oop');
+    card.style.cssText=`left:${l}px;top:${t}px`;
+    const hdr=document.createElement('div');hdr.className='clhdr';
+    hdr.innerHTML=`<span class="cln">Cluster ${c}</span><button class="oopt${G.oop.has(c)?' on':''}" onclick="togOOP(${c},this)">${G.oop.has(c)?'OoP':'aktiv'}</button>`;
+    card.appendChild(hdr);
+    const gate=document.createElement('div');gate.className='gaten';gate.id='n-g'+c;
+    gate.onclick=()=>openEP('g'+c,gate);
+    gate.innerHTML=`<div class="nl">GATE ${c}</div><div class="np" id="np-g${c}"></div><div class="nb" id="nb-g${c}"></div>`;
+    card.appendChild(gate);
+    const prow=document.createElement('div');prow.className='plrow';
+    ['a','b','c'].forEach(p=>{
+      const pn=document.createElement('div');pn.className='pln';pn.id=`n-${c}${p}`;
+      pn.onclick=()=>openEP(c+p,pn);
+      pn.innerHTML=`<div class="nl">${p.toUpperCase()}</div><div class="np" id="np-${c}${p}"></div><div class="nb" id="nb-${c}${p}"></div>`;
+      prow.appendChild(pn);
+    });
+    card.appendChild(prow);outer.appendChild(card);
+  }
+  refreshAll();
+}
+function refreshAll(){ALLSYS.forEach(refreshNode);}
+function refreshNode(s){
+  const st=G.map[s];
+  const np=document.getElementById('np-'+s);const nb=document.getElementById('nb-'+s);
+  if(!np||!nb)return;
+  np.innerHTML='';
+  for(let p=0;p<G.pc;p++){
+    const tot=st.fr[p]+st.dm[p];
+    if(tot>0){const dot=document.createElement('span');dot.className='ndot';dot.style.background=PCOL[p];dot.style.color='#000';dot.textContent=tot;if(st.dm[p]>0&&st.fr[p]===0)dot.classList.add('ndotD');np.appendChild(dot);}
+  }
+  nb.innerHTML='';
+  for(let p=0;p<G.pc;p++){
+    if(st.ci[p]){const ic=document.createElement('span');ic.className='nic';ic.style.color=PCOL[p];ic.textContent='■';nb.appendChild(ic);}
+    if(st.sp[p]){const ic=document.createElement('span');ic.className='nic';ic.style.color=PCOL[p];ic.textContent='△';nb.appendChild(ic);}
+  }
+}
+function togOOP(c,btn){
+  if(G.oop.has(c)){G.oop.delete(c);btn.textContent='aktiv';btn.classList.remove('on');}
+  else{G.oop.add(c);btn.textContent='OoP';btn.classList.add('on');}
+  document.getElementById('cl'+c).classList.toggle('oop',G.oop.has(c));
+}
+
+let activeNode=null;
+function openEP(s,el){
+  if(activeNode===s){closeEP();return;}
+  activeNode=s;
+  document.querySelectorAll('.act').forEach(e=>e.classList.remove('act'));
+  el.classList.add('act');
+  const st=G.map[s];
+  const panel=document.getElementById('epan');
+  const botLabel=p=>p===G.botIdx?'BOT':PNAMES[p];
+  panel.innerHTML=`
+    <div class="ephdr"><span class="eptitle">${sysLabel(s)}</span><button class="epx" onclick="closeEP()">×</button></div>
+    <div class="epmini">⬛ färska &nbsp;&nbsp; 💥 skadade &nbsp;&nbsp; ■ stad &nbsp;&nbsp; △ starport</div>
+    ${Array.from({length:G.pc},(_,p)=>`
+    <div class="eprow">
+      <span class="eppn" style="color:${PCOL[p]}">${botLabel(p)}</span>
+      <div class="sp"><button onclick="adj('${s}','fr',${p},-1)">−</button><span id="ef-${s}-${p}">${st.fr[p]}</span><button onclick="adj('${s}','fr',${p},1)">+</button></div>
+      <div class="sp"><button onclick="adj('${s}','dm',${p},-1)">−</button><span id="ed-${s}-${p}">${st.dm[p]}</span><button onclick="adj('${s}','dm',${p},1)">+</button></div>
+      <button class="blt${st.ci[p]?' on':''}" onclick="togB('${s}','ci',${p},this)">■</button>
+      <button class="blt${st.sp[p]?' on':''}" onclick="togB('${s}','sp',${p},this)">△</button>
+    </div>`).join('')}`;
+  panel.classList.remove('hidden');
+  const rect=el.getBoundingClientRect();const pw=218,ph=55+G.pc*40;
+  let top=rect.bottom+8,left=rect.left;
+  if(top+ph>window.innerHeight-10)top=rect.top-ph-8;
+  if(left+pw>window.innerWidth-10)left=window.innerWidth-pw-10;
+  panel.style.top=Math.max(10,top)+'px';panel.style.left=Math.max(10,left)+'px';
+}
+function closeEP(){activeNode=null;document.getElementById('epan').classList.add('hidden');document.querySelectorAll('.act').forEach(e=>e.classList.remove('act'));}
+function adj(s,f,p,d){G.map[s][f][p]=Math.max(0,G.map[s][f][p]+d);document.getElementById((f==='fr'?'ef':'ed')+'-'+s+'-'+p).textContent=G.map[s][f][p];refreshNode(s);}
+function togB(s,f,p,btn){G.map[s][f][p]=G.map[s][f][p]?0:1;btn.classList.toggle('on',!!G.map[s][f][p]);refreshNode(s);}
+document.addEventListener('click',e=>{
+  const ep=document.getElementById('epan');
+  if(!ep.classList.contains('hidden')&&!ep.contains(e.target)&&!e.target.closest('.gaten')&&!e.target.closest('.pln')&&!e.target.closest('.oopt'))closeEP();
+});
+
+function buildLN(){
+  const sel=document.getElementById('ln');const min=G.pc===4?1:2,max=G.pc===4?7:6;
+  sel.innerHTML='';for(let n=min;n<=max;n++){const o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);}
+}
+let hasInit=false;
+function setInit(v){
+  hasInit=v;
+  document.getElementById('iy').classList.toggle('on',v);
+  document.getElementById('in').classList.toggle('on',!v);
+  document.getElementById('lsec').style.display=v?'none':'block';
+}
+function renderHand(){
+  const d=document.getElementById('hchs');d.innerHTML='';
+  if(!G.hand.length){d.innerHTML='<span style="color:var(--dim);font-size:12px">Inga kort kvar — starta nytt kapitel.</span>';return;}
+  G.hand.forEach(c=>{const sp=document.createElement('span');sp.className='hch '+SC[c.si];sp.textContent=SUITS[c.si].substring(0,2).toUpperCase()+' '+c.n;d.appendChild(sp);});
+}
+function mapToText(){
+  const pn=p=>p===G.botIdx?'Bot':PNAMES[p];let txt='';
+  for(let c=1;c<=6;c++){
+    if(G.oop.has(c)){txt+=`Cluster ${c}: out of play\n`;continue;}
+    txt+=`Cluster ${c}:\n`;
+    [['g'+c,`Gate ${c}`],[c+'a',`Planet ${c}A`],[c+'b',`Planet ${c}B`],[c+'c',`Planet ${c}C`]].forEach(([s,lbl])=>{
+      const st=G.map[s];let parts=[];
+      for(let p=0;p<G.pc;p++){
+        let pp=[];
+        if(st.fr[p])pp.push(st.fr[p]+(st.fr[p]>1?' fresh ships':' fresh ship'));
+        if(st.dm[p])pp.push(st.dm[p]+(st.dm[p]>1?' damaged ships':' damaged ship'));
+        if(st.ci[p])pp.push('city');if(st.sp[p])pp.push('starport');
+        if(pp.length)parts.push(pn(p)+': '+pp.join(', '));
+      }
+      txt+=`  ${lbl}: ${parts.length?parts.join('; '):'empty'}\n`;
+    });
+  }
+  return txt;
+}
+
+const BSYS=`You are playing as the bot player in Arcs (board game by Cole Wehrle, Leder Games). Make specific, actionable decisions. Always name exact systems (e.g. "Gate 3", "Planet 4B"). The human executes your move physically.
+
+Key rules:
+- Pips: 1→1, 2→2, 3→3, 4→3, 5→2, 6→2, 7→1
+- Admin pips: Tax/Repair/Influence · Aggression: Battle/Move/Secure · Construction: Build/Repair · Mobilization: Move/Influence
+- Surpass=same suit+higher number→all pips on YOUR card. Copy=face-down→1 action of lead. Pivot=different suit→1 action of your suit.
+- Prelude: Material→Build/Repair, Fuel→Move, Weapon→all pips become Battle, Relic→Secure, Psionic→lead action
+- Declare ambition only with initiative: 2=Tycoon,3=Tyrant,4=Warlord,5=Keeper,6=Empath,7=any
+- Move: Loyal ships to adjacent system. From Loyal starport=Catapult: move freely through gates until any planet or enemy-controlled gate
+- Control=most fresh ships in system. Tax: own city OR Rival city you control→1 resource+capture agent
+- Battle: your system with Loyal ships+one Rival+dice (Assault/Skirmish/Raid, 1 per ship)
+- Build: city/starport in empty slot (need Loyal piece) OR ship at Loyal starport
+- Adjacent: gate↔own 3 planets, gate↔2 neighboring cluster gates; planet↔gate+neighboring planets`;
+
+async function askBot(){
+  if(!G.hand.length){alert('Inga kort kvar.');return;}
+  const hand=G.hand.map(c=>`${SUITS[c.si]} ${c.n} (${PIPS[c.n]}pip)`).join(', ');
+  const res=['tr0','tr1','tr2','tr3','tr4'].map(id=>parseInt(document.getElementById(id).value)||0);
+  const rn=['Material','Fuel','Weapon','Relic','Psionic'];
+  const resStr=res.map((v,i)=>v?v+' '+rn[i]:null).filter(Boolean).join(', ')||'none';
+  const board=mapToText();const ambs=G.ambs.length?G.ambs.join(', '):'none declared';
+  const extra=document.getElementById('ctx').value.trim();
+  const sd={aggressive:'Aggressive: attack, trophies, Warlord.',balanced:'Balanced: adapt to board.',economic:'Economic: build, resources, Tycoon/Keeper/Empath.'};
+  const leadInfo=hasInit?'Bot HAS initiative — plays lead card.':`Lead: ${document.getElementById('ls').value} ${document.getElementById('ln').value}. Bot does NOT have initiative.`;
+  const prompt=`BOARD:\n${board}\nBot hand: ${hand}\nBot resources: ${resStr}\n${leadInfo}\nDeclared ambitions: ${ambs}\nStrategy: ${sd[G.strat]}\n${extra?'Extra: '+extra:''}\n\nRespond ONLY:\nCARD: [suit] [number]\nPLAY_TYPE: [Lead/Surpass/Copy/Pivot]\nDECLARE_AMBITION: [none or name]\nSEIZE_INITIATIVE: [yes/no]\nPRELUDE: [resource use or none]\nACTION_1: [specific with system names]\nACTION_2: [specific or none]\nACTION_3: [specific or none]\nREASONING: [1-2 sentences]`;
+
+  const btn=document.getElementById('askbtn');const box=document.getElementById('dbox');
+  btn.disabled=true;btn.textContent='...';box.style.display='block';
+  document.getElementById('dc').innerHTML='<div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+  ['dpt','damb','dpre','dreason'].forEach(id=>document.getElementById(id).textContent='');
+  document.getElementById('dacts').innerHTML='';
+
+  try{
+    // Calls our own Netlify proxy — API key stays server-side
+    const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:BSYS,messages:[{role:'user',content:prompt}]})});
+    const data=await r.json();
+    parseDec(data.content?.[0]?.text||'Inget svar.');
+  }catch(e){document.getElementById('dc').textContent='Fel: '+e.message;}
+  btn.disabled=false;btn.textContent='Vad gör boten? →';
+}
+
+function gv(text,key){const m=text.match(new RegExp('^'+key+':\\s*(.+)$','m'));return m?m[1].trim():'';}
+function parseDec(text){
+  const card=gv(text,'CARD'),pt=gv(text,'PLAY_TYPE'),amb=gv(text,'DECLARE_AMBITION');
+  const seize=gv(text,'SEIZE_INITIATIVE'),pre=gv(text,'PRELUDE'),reason=gv(text,'REASONING');
+  const acts=['ACTION_1','ACTION_2','ACTION_3'].map(k=>gv(text,k)).filter(v=>v&&v.toLowerCase()!=='none');
+  document.getElementById('dc').textContent='🎴 '+(card||'?');
+  document.getElementById('dpt').textContent=pt+(seize==='yes'?' · TAR INITIATIVE':'');
+  document.getElementById('damb').innerHTML=amb&&amb.toLowerCase()!=='none'?`<div class="dmini">Deklarerar ambition</div><div style="color:var(--gold);font-size:14px;margin-bottom:5px">${amb}</div>`:'';
+  document.getElementById('dpre').innerHTML=pre&&pre.toLowerCase()!=='none'?`<div class="dmini">Prelude</div><div style="font-size:12px;color:var(--dim);margin-bottom:5px">${pre}</div>`:'';
+  const ul=document.getElementById('dacts');
+  acts.forEach((a,i)=>{const li=document.createElement('li');li.textContent=(i+1)+'. '+a;ul.appendChild(li);});
+  document.getElementById('dreason').textContent=reason;
+  const parts=card.split(' ');
+  G.lastDec={si:SUITS.findIndex(s=>card.startsWith(s)),n:parseInt(parts[parts.length-1])};
+}
+function markDone(){
+  if(!G.lastDec)return;const{si,n}=G.lastDec;
+  const i=G.hand.findIndex(c=>c.si===si&&c.n===n);if(i>=0)G.hand.splice(i,1);
+  renderHand();document.getElementById('dbox').style.display='none';
+  document.getElementById('ctx').value='';G.lastDec=null;
+  if(!G.hand.length)setTimeout(()=>alert('Bot har spelat alla kort — starta nytt kapitel!'),200);
+}
+
+renderPicker();setInit(false);
+</script>
+</body>
+</html>
