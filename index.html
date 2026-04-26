@@ -10,29 +10,25 @@
   --bg:#080808;--s1:#111;--s2:#181818;--s3:#202020;
   --bord:#242424;--bord2:#2e2e2e;
   --text:#ddd8ce;--dim:#666;--muted:#2a2a2a;
-  --c0:#c0392b;--c1:#2471a3;--c2:#d4800a;--c3:#c9a84c;
+  --c0:#888;--c1:#c0392b;--c2:#d4800a;--c3:#c9a84c;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;min-height:100vh}
 .screen{display:none}.screen.active{display:block}
 .hidden{display:none!important}
-
 .top{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--bord);background:var(--s1)}
 .logo{font-family:Georgia,serif;font-size:1.35rem;letter-spacing:.32em;color:var(--gold)}
 .logosub{font-size:.55rem;letter-spacing:.22em;color:var(--dim);text-transform:uppercase;margin-top:1px}
-
 .btn{padding:5px 12px;background:transparent;border:1px solid var(--bord2);color:var(--dim);cursor:pointer;border-radius:3px;font-size:12px;transition:all .15s;white-space:nowrap}
 .btn:hover{border-color:var(--gdim);color:var(--text)}.btn.on{border-color:var(--gold);color:var(--gold);background:var(--gfaint)}
 .btn.pri{border-color:var(--gdim);color:var(--gold)}.btn.pri:hover{background:var(--gfaint)}
-.btn.sm{padding:3px 8px;font-size:11px}.btn:disabled{opacity:.3;cursor:default}
+.btn.sm{padding:3px 8px;font-size:11px}.btn.xs{padding:2px 6px;font-size:10px}.btn:disabled{opacity:.3;cursor:default}
 .bg{display:flex;gap:4px;flex-wrap:wrap}
-
 .tabs{display:flex;border-bottom:1px solid var(--bord);background:var(--s1)}
-.tb{flex:1;padding:9px 4px;font-size:11px;letter-spacing:.08em;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--dim);cursor:pointer;transition:all .15s;text-transform:uppercase}
+.tb{flex:1;padding:9px 4px;font-size:11px;letter-spacing:.06em;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--dim);cursor:pointer;transition:all .15s;text-transform:uppercase}
 .tb.on{color:var(--gold);border-bottom-color:var(--gold)}
-
-.swrap{max-width:580px;margin:0 auto;padding:1rem}
-.sec{margin-bottom:.85rem;padding:.85rem 1rem;background:var(--s1);border:1px solid var(--bord);border-radius:4px}
+.swrap{max-width:600px;margin:0 auto;padding:1rem}
+.sec{margin-bottom:.8rem;padding:.85rem 1rem;background:var(--s1);border:1px solid var(--bord);border-radius:4px}
 .stl{font-size:8px;letter-spacing:.22em;color:var(--gdim);text-transform:uppercase;margin-bottom:7px}
 .infot{font-size:11px;color:var(--dim);margin-top:5px;line-height:1.4}
 .cg{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:3px}
@@ -40,30 +36,29 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
 .cbt:hover:not([disabled]){border-color:var(--dim);color:var(--text)}.cbt .pp{font-size:6px;opacity:.5;margin-top:1px}
 .cbt.S{color:#000}.cbt.off{opacity:.18;cursor:not-allowed}
 .cbt.s0:not(.S){border-top:2px solid #888}.cbt.s0.S{background:#888;border-color:#888}
-.cbt.s1:not(.S){border-top:2px solid var(--c0)}.cbt.s1.S{background:var(--c0);border-color:var(--c0)}
+.cbt.s1:not(.S){border-top:2px solid var(--c1)}.cbt.s1.S{background:var(--c1);border-color:var(--c1)}
 .cbt.s2:not(.S){border-top:2px solid var(--gold)}.cbt.s2.S{background:var(--gold);border-color:var(--gold)}
 .cbt.s3:not(.S){border-top:2px solid #2a8070}.cbt.s3.S{background:#2a8070;border-color:#2a8070}
-.rg{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.rg5{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.rg2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .ri{display:flex;flex-direction:column;align-items:center;gap:3px}
 .ri label{font-size:9px;color:var(--dim)}
 .ri input{width:100%;background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:15px;text-align:center;padding:4px;border-radius:2px}
+.ri input.sm{font-size:12px;padding:3px}
 .ambs{display:flex;gap:5px;flex-wrap:wrap}
 .ab{font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid var(--bord2);background:transparent;color:var(--dim);cursor:pointer;transition:all .15s}
 .ab.on{border-color:var(--gold);color:var(--gold);background:var(--gfaint)}
-
 #tab-map{background:var(--bg)}
 .mscroll{overflow-x:auto;padding:14px 16px 8px}
 .mouter{position:relative;width:560px;height:524px;margin:0 auto}
 #msvg{position:absolute;top:0;left:0;width:560px;height:524px;pointer-events:none}
 .mhint{text-align:center;padding:6px 0 10px;font-size:11px;color:var(--dim)}
-
 .cl{position:absolute;width:132px;background:var(--s1);border:1px solid var(--bord);border-radius:5px}
 .cl.oop{opacity:.3}
 .clhdr{display:flex;align-items:center;justify-content:space-between;padding:4px 8px;border-bottom:1px solid var(--bord);background:var(--s2);border-radius:5px 5px 0 0}
 .cln{font-family:Georgia,serif;font-size:12px;color:var(--gold);letter-spacing:.05em}
 .oopt{font-size:8px;padding:1px 5px;border:1px solid var(--bord2);background:transparent;color:var(--dim);cursor:pointer;border-radius:2px;transition:all .12s}
-.oopt.on{border-color:rgba(192,57,43,.6);color:var(--c0)}
-
+.oopt.on{border-color:rgba(192,57,43,.6);color:var(--c1)}
 .gaten{margin:5px 7px 3px;padding:5px 7px;background:var(--s2);border:1px solid var(--bord2);border-radius:3px;cursor:pointer;transition:border-color .12s;min-height:36px}
 .gaten:hover,.gaten.act{border-color:var(--gold)}.gaten.act{background:var(--gfaint)}
 .plrow{display:flex;gap:3px;padding:0 5px 6px}
@@ -75,8 +70,7 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
 .ndotD{opacity:.45}
 .nb{display:flex;gap:2px;justify-content:center;margin-top:2px}
 .nic{font-size:9px;line-height:1}
-
-#epan{position:fixed;background:var(--s1);border:1px solid var(--gold);border-radius:6px;padding:11px 13px;z-index:500;width:218px;box-shadow:0 8px 32px rgba(0,0,0,.8)}
+#epan{position:fixed;background:var(--s1);border:1px solid var(--gold);border-radius:6px;padding:11px 13px;z-index:500;width:222px;box-shadow:0 8px 32px rgba(0,0,0,.8)}
 .ephdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}
 .eptitle{font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
 .epx{background:transparent;border:none;color:var(--dim);cursor:pointer;font-size:18px;line-height:1;padding:0}
@@ -84,27 +78,34 @@ body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,s
 .eprow:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
 .eppn{font-size:10px;font-weight:700;width:30px;flex-shrink:0}
 .sp{display:flex;align-items:center;gap:2px}
-.sp button{width:18px;height:18px;background:var(--s2);border:1px solid var(--bord2);color:var(--text);cursor:pointer;border-radius:2px;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0;transition:border-color .1s}
+.sp button{width:18px;height:18px;background:var(--s2);border:1px solid var(--bord2);color:var(--text);cursor:pointer;border-radius:2px;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0}
 .sp button:hover{border-color:var(--gdim)}
 .sp span{width:14px;text-align:center;font-size:12px}
 .blt{font-size:10px;padding:2px 5px;border:1px solid var(--bord2);background:transparent;color:var(--dim);cursor:pointer;border-radius:2px;transition:all .12s}
 .blt.on{border-color:var(--gold);color:var(--gold)}
-.epmini{font-size:8px;color:var(--dim);letter-spacing:.1em;margin:0 0 3px;text-align:center}
-
-.twrap{max-width:580px;margin:0 auto;padding:.8rem}
+.epmini{font-size:8px;color:var(--dim);letter-spacing:.1em;margin:0 0 4px;text-align:center}
+.twrap{max-width:600px;margin:0 auto;padding:.8rem}
 .tsec{margin-bottom:.8rem;padding:.85rem 1rem;background:var(--s1);border:1px solid var(--bord);border-radius:4px}
 .hchs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
-.hch{padding:3px 8px;border-radius:3px;font-size:11px;font-weight:700;border:1px solid transparent;cursor:default}
+.hch{padding:3px 8px;border-radius:3px;font-size:11px;font-weight:700;border:1px solid transparent}
 .hch.s0{background:rgba(136,136,136,.12);border-color:#888;color:#888}
-.hch.s1{background:rgba(192,57,43,.12);border-color:var(--c0);color:var(--c0)}
+.hch.s1{background:rgba(192,57,43,.12);border-color:var(--c1);color:var(--c1)}
 .hch.s2{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--gold)}
 .hch.s3{background:rgba(42,128,112,.12);border-color:#2a8070;color:#2a8070}
-select{background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:13px;padding:5px 8px;border-radius:3px;cursor:pointer}
+select{background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:12px;padding:4px 6px;border-radius:3px;cursor:pointer}
 select:focus{outline:none;border-color:var(--gdim)}
-textarea{width:100%;min-height:60px;background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:13px;line-height:1.5;padding:8px;border-radius:3px;resize:vertical;font-family:inherit}
+textarea{width:100%;background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:13px;line-height:1.5;padding:8px;border-radius:3px;resize:vertical;font-family:inherit}
 textarea:focus{outline:none;border-color:var(--gdim)}
 textarea::placeholder{color:#333}
-
+input[type=text],input[type=number]{background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:13px;padding:5px 7px;border-radius:3px;font-family:inherit}
+input[type=text]:focus,input[type=number]:focus{outline:none;border-color:var(--gdim)}
+.pwrow{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.pwlbl{font-size:11px;font-weight:700;width:50px;flex-shrink:0}
+.pwbar{flex:1;height:6px;background:var(--s2);border-radius:3px;overflow:hidden}
+.pwfill{height:100%;border-radius:3px;transition:width .2s}
+.outrow{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.outr{font-size:11px;padding:3px 8px;border-radius:20px;border:1px solid var(--bord2);color:var(--dim);cursor:pointer;transition:all .12s}
+.outr.on{border-color:rgba(192,57,43,.5);color:var(--c1);background:rgba(192,57,43,.08)}
 .dbox{display:none;padding:.9rem 1rem;background:var(--s2);border:1px solid var(--bord);border-left:2px solid var(--gold);border-radius:4px;margin-top:.8rem}
 .dn{font-size:19px;font-weight:700;color:var(--gold);margin-bottom:3px}
 .dt{font-size:9px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-bottom:9px}
@@ -117,15 +118,40 @@ textarea::placeholder{color:#333}
 .dot{width:5px;height:5px;border-radius:50%;background:var(--gdim);animation:pu 1.2s ease-in-out infinite}
 .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
 @keyframes pu{0%,100%{opacity:.2}50%{opacity:1}}
+.mkrow{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.mk{font-size:12px;padding:3px 9px;border-radius:3px;border:1px solid var(--bord2);background:var(--s2);cursor:pointer;color:var(--dim);transition:all .12s}
+.mk.on{border-color:var(--gold);color:var(--gold);background:var(--gfaint)}
+.opsec{border:1px solid var(--bord2);border-left-width:2px;border-radius:3px;padding:8px 10px;margin-bottom:6px}
+.opsec:last-child{margin-bottom:0}
+.oplbl{font-size:10px;font-weight:700;margin-bottom:7px;letter-spacing:.05em}
+/* Court */
+.ccard{display:flex;align-items:center;gap:5px;padding:5px 0;border-bottom:1px solid var(--bord)}
+.ccard:last-child{border-bottom:none}
+.ccname{flex:1;font-size:12px}
+.ccname input{width:100%;font-size:12px;padding:3px 6px}
+.agdots{display:flex;gap:4px;align-items:center}
+.agsp{display:flex;align-items:center;gap:2px}
+.agsp button{width:16px;height:16px;background:var(--s2);border:1px solid var(--bord2);color:var(--text);cursor:pointer;border-radius:2px;font-size:10px;display:flex;align-items:center;justify-content:center;padding:0}
+.agsp span{font-size:11px;width:12px;text-align:center;font-weight:700}
+/* Ambition boxes */
+.ambbox-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.ambbox-lbl{font-size:11px;width:62px;flex-shrink:0}
+.ambbox-sel{font-size:12px;flex:1;min-width:110px}
+/* City slots */
+.csrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}
+.csblt{font-size:11px;padding:4px 10px;border:1px solid var(--bord2);background:transparent;color:var(--dim);cursor:pointer;border-radius:3px;transition:all .12s}
+.csblt.on{border-color:var(--gold);color:var(--gold);background:var(--gfaint)}
 </style>
 </head>
 <body>
 
+<!-- SETUP -->
 <div id="s0" class="screen active">
 <div class="top">
   <div><div class="logo">ARCS</div><div class="logosub">Bot-spelare · Setup</div></div>
 </div>
 <div class="swrap">
+
 <div class="sec">
   <div class="stl">Antal spelare (inkl. boten)</div>
   <div class="bg" id="pcb">
@@ -135,6 +161,7 @@ textarea::placeholder{color:#333}
   </div>
   <div class="infot" id="pci">Med 3 spelare används kort 2–6.</div>
 </div>
+
 <div class="sec">
   <div class="stl">Bot-strategi</div>
   <div class="bg" id="stb">
@@ -142,16 +169,44 @@ textarea::placeholder{color:#333}
     <button class="btn on" onclick="setSt('balanced')">⚖ Balanserad</button>
     <button class="btn" onclick="setSt('economic')">🏗 Ekonomisk</button>
   </div>
-  <div class="infot" id="sti">Adaptiv: boten väljer strategi efter situationen.</div>
+  <div class="infot" id="sti">Adaptiv: väljer strategi efter situationen.</div>
 </div>
+
 <div class="sec">
   <div class="stl">Bot's hand — välj 6 kort <span id="hc" style="color:var(--gdim)">(0/6)</span></div>
   <div id="picker"></div>
   <div style="margin-top:8px"><button class="btn pri" onclick="randH()">Slumpa 6 kort</button></div>
 </div>
+
+<div class="sec">
+  <div class="stl">Kapitel</div>
+  <div class="bg" id="chapb">
+    <button class="btn on" onclick="setChap(1)">1</button>
+    <button class="btn" onclick="setChap(2)">2</button>
+    <button class="btn" onclick="setChap(3)">3</button>
+    <button class="btn" onclick="setChap(4)">4</button>
+    <button class="btn" onclick="setChap(5)">5</button>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stl">Spelarnas Power (0–50)</div>
+  <div id="pwsetup"></div>
+</div>
+
+<div class="sec">
+  <div class="stl">Ambitionsmarkörer — tillgängliga i Available</div>
+  <div class="mkrow" id="mks">
+    <button class="mk on" data-v="5" onclick="togMk(this)">5/3</button>
+    <button class="mk on" data-v="3" onclick="togMk(this)">3/2</button>
+    <button class="mk on" data-v="2" onclick="togMk(this)">2/0</button>
+  </div>
+  <div style="margin-top:6px"><button class="mk" id="flipbtn" onclick="togFlip(this)">Lägsta markör är flippad (mer Power)</button></div>
+</div>
+
 <div class="sec">
   <div class="stl">Bot's resurser vid kapitelstart</div>
-  <div class="rg">
+  <div class="rg5">
     <div class="ri"><label>Material</label><input type="number" id="r0" min="0" max="5" value="0"></div>
     <div class="ri"><label>Fuel</label><input type="number" id="r1" min="0" max="5" value="0"></div>
     <div class="ri"><label>Weapon</label><input type="number" id="r2" min="0" max="5" value="0"></div>
@@ -159,8 +214,30 @@ textarea::placeholder{color:#333}
     <div class="ri"><label>Psionic</label><input type="number" id="r4" min="0" max="5" value="0"></div>
   </div>
 </div>
+
 <div class="sec">
-  <div class="stl">Deklarerade ambitioner</div>
+  <div class="stl">Bot's city-slots</div>
+  <div class="infot" style="margin-bottom:6px">Hur många städer har boten byggt? Vilka bonus-slots är upplåsta?</div>
+  <div class="csrow">
+    <div class="ri"><label>Städer byggda (0–5)</label><input type="number" id="bcities" min="0" max="5" value="0" style="width:60px"></div>
+    <button class="csblt" id="cs2btn" onclick="this.classList.toggle('on');G.botCities.plus2=this.classList.contains('on')">+2 bonus upplåst</button>
+    <button class="csblt" id="cs5btn" onclick="this.classList.toggle('on');G.botCities.plus5=this.classList.contains('on')">+5 bonus upplåst</button>
+  </div>
+  <div class="infot">+2 bonus = fjärde city-slot öppen. +5 bonus = femte city-slot öppen (båda bonusarna).</div>
+</div>
+
+<div class="sec">
+  <div class="stl">Bot's guild-kort (ett per rad)</div>
+  <textarea id="gcards" style="min-height:55px" placeholder="T.ex:&#10;Loyal Engineers&#10;Material Cartel"></textarea>
+</div>
+
+<div class="sec">
+  <div class="stl">Bot's lore-kort (ett per rad)</div>
+  <textarea id="lcards" style="min-height:44px" placeholder="T.ex:&#10;Tool-Priests&#10;Hidden Harbors"></textarea>
+</div>
+
+<div class="sec">
+  <div class="stl">Deklarerade ambitioner just nu</div>
   <div class="ambs">
     <button class="ab" data-a="Tycoon" onclick="togA(this)">Tycoon</button>
     <button class="ab" data-a="Tyrant" onclick="togA(this)">Tyrant</button>
@@ -169,10 +246,12 @@ textarea::placeholder{color:#333}
     <button class="ab" data-a="Empath" onclick="togA(this)">Empath</button>
   </div>
 </div>
+
 <button class="btn pri" style="width:100%;padding:11px;font-size:14px" onclick="startGame()">Starta spelet →</button>
 </div>
 </div>
 
+<!-- PLAY -->
 <div id="s1" class="screen">
 <div class="top">
   <div><div class="logo">ARCS</div><div class="logosub" id="psub">Bot-spelare</div></div>
@@ -186,29 +265,108 @@ textarea::placeholder{color:#333}
   <button class="tb" onclick="showTab('turn')">Bot's Tur</button>
 </div>
 
+<!-- MAP -->
 <div id="tab-map">
   <div class="mscroll">
-    <div class="mouter" id="mouter">
-      <svg id="msvg" viewBox="0 0 560 524"></svg>
-    </div>
+    <div class="mouter" id="mouter"><svg id="msvg" viewBox="0 0 560 524"></svg></div>
   </div>
-  <div class="mhint">Klicka på ett system för att redigera pjäser &nbsp;·&nbsp; ■ = stad &nbsp;·&nbsp; △ = starport</div>
+  <div class="mhint">Klicka på system → redigera pjäser &nbsp;·&nbsp; ■ stad &nbsp;·&nbsp; △ starport</div>
 </div>
 
+<!-- TURN -->
 <div id="tab-turn" class="hidden">
 <div class="twrap">
+
+  <!-- BOT -->
   <div class="tsec">
-    <div class="stl">Bot's hand</div>
+    <div class="stl">Bot's hand <span id="handleft" style="color:var(--gdim)"></span></div>
     <div class="hchs" id="hchs"></div>
-    <div class="stl" style="margin-top:5px">Bot's resurser</div>
-    <div class="rg" style="margin-top:4px">
-      <div class="ri"><label>Material</label><input type="number" id="tr0" min="0" max="5" value="0"></div>
-      <div class="ri"><label>Fuel</label><input type="number" id="tr1" min="0" max="5" value="0"></div>
-      <div class="ri"><label>Weapon</label><input type="number" id="tr2" min="0" max="5" value="0"></div>
-      <div class="ri"><label>Relic</label><input type="number" id="tr3" min="0" max="5" value="0"></div>
-      <div class="ri"><label>Psionic</label><input type="number" id="tr4" min="0" max="5" value="0"></div>
+    <div class="rg2" style="margin-top:10px">
+      <div>
+        <div class="stl">Resurser</div>
+        <div class="rg5" style="margin-top:4px">
+          <div class="ri"><label>Mat</label><input type="number" id="tr0" min="0" max="5" value="0"></div>
+          <div class="ri"><label>Fuel</label><input type="number" id="tr1" min="0" max="5" value="0"></div>
+          <div class="ri"><label>Weap</label><input type="number" id="tr2" min="0" max="5" value="0"></div>
+          <div class="ri"><label>Relic</label><input type="number" id="tr3" min="0" max="5" value="0"></div>
+          <div class="ri"><label>Psi</label><input type="number" id="tr4" min="0" max="5" value="0"></div>
+        </div>
+      </div>
+      <div>
+        <div class="stl">Trophies &amp; Captives</div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <div class="ri"><label>Trophies</label><input type="number" id="ttro" min="0" max="50" value="0"></div>
+          <div class="ri"><label>Captives</label><input type="number" id="tcap" min="0" max="50" value="0"></div>
+        </div>
+      </div>
+    </div>
+    <div class="rg2" style="margin-top:10px">
+      <div>
+        <div class="stl">City-slots</div>
+        <div style="display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap">
+          <div class="ri" style="align-items:flex-start"><label>Städer byggda</label><input type="number" id="tcities" min="0" max="5" value="0" style="width:52px"></div>
+          <div style="display:flex;flex-direction:column;gap:3px;margin-top:14px">
+            <button class="csblt" id="tcs2btn" onclick="this.classList.toggle('on');G.botCities.plus2=this.classList.contains('on')">+2 bonus</button>
+            <button class="csblt" id="tcs5btn" onclick="this.classList.toggle('on');G.botCities.plus5=this.classList.contains('on')">+5 bonus</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="stl">Outrage</div>
+        <div class="outrow" id="bot-out" style="margin-top:4px">
+          <button class="outr" data-r="Material" onclick="togOut(this,'bot')">Mat</button>
+          <button class="outr" data-r="Fuel" onclick="togOut(this,'bot')">Fuel</button>
+          <button class="outr" data-r="Weapon" onclick="togOut(this,'bot')">Weap</button>
+          <button class="outr" data-r="Relic" onclick="togOut(this,'bot')">Relic</button>
+          <button class="outr" data-r="Psionic" onclick="togOut(this,'bot')">Psi</button>
+        </div>
+      </div>
+    </div>
+    <div class="rg2" style="margin-top:10px">
+      <div>
+        <div class="stl">Guild-kort</div>
+        <textarea id="tgcards" style="min-height:44px" placeholder="Loyal Engineers&#10;Material Cartel"></textarea>
+      </div>
+      <div>
+        <div class="stl">Lore-kort</div>
+        <textarea id="tlcards" style="min-height:44px" placeholder="Tool-Priests&#10;Hidden Harbors"></textarea>
+      </div>
     </div>
   </div>
+
+  <!-- AMBITION BOXES -->
+  <div class="tsec">
+    <div class="stl">Ambitionsboxar — vilken markör ligger i varje box?</div>
+    <div id="ambboxes"></div>
+  </div>
+
+  <!-- COURT -->
+  <div class="tsec">
+    <div class="stl">Court-raden <span style="color:var(--dim);font-weight:normal;letter-spacing:0;font-size:10px;text-transform:none">— kort + agenter per spelare</span></div>
+    <div id="courtcards"></div>
+    <button class="btn xs" style="margin-top:6px" onclick="addCourtCard()">+ Lägg till kort</button>
+    <div class="infot">Registrera vilka kort som syns i Court-raden och hur många agenter varje spelare placerat på dem.</div>
+  </div>
+
+  <!-- OPPONENTS -->
+  <div class="tsec">
+    <div class="stl">Motståndare</div>
+    <div id="oppsec"></div>
+  </div>
+
+  <!-- POWER -->
+  <div class="tsec">
+    <div class="stl">Power-ställning</div>
+    <div id="pwbars"></div>
+  </div>
+
+  <!-- CHAPTER LOG -->
+  <div class="tsec">
+    <div class="stl">Kapitellogg</div>
+    <textarea id="chaplog" style="min-height:55px" placeholder="Viktiga händelser hittills i kapitlet..."></textarea>
+  </div>
+
+  <!-- ROUND -->
   <div class="tsec">
     <div class="stl">Runda-info</div>
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
@@ -216,16 +374,18 @@ textarea::placeholder{color:#333}
       <div class="bg"><button class="btn sm" id="iy" onclick="setInit(true)">Ja</button><button class="btn sm on" id="in" onclick="setInit(false)">Nej</button></div>
     </div>
     <div id="lsec">
-      <div class="stl" style="margin-bottom:5px">Lead-kortets suit och nummer</div>
+      <div class="stl" style="margin-bottom:5px">Lead-kort</div>
       <div style="display:flex;gap:8px;margin-bottom:10px">
         <select id="ls"><option>Administration</option><option>Aggression</option><option>Construction</option><option>Mobilization</option></select>
         <select id="ln"></select>
       </div>
     </div>
-    <div class="stl" style="margin-bottom:5px">Extra kontext (valfritt)</div>
-    <textarea id="ctx" placeholder="Skriv om något viktigt som hänt den här rundan..."></textarea>
+    <div class="stl" style="margin-bottom:5px">Extra kontext</div>
+    <textarea id="ctx" style="min-height:40px" placeholder="Oväntat som hänt den här rundan..."></textarea>
   </div>
+
   <button class="btn pri" id="askbtn" onclick="askBot()" style="width:100%;padding:10px;font-size:14px">Vad gör boten? →</button>
+
   <div class="dbox" id="dbox">
     <div class="dn" id="dc"></div>
     <div class="dt" id="dpt"></div>
@@ -234,9 +394,7 @@ textarea::placeholder{color:#333}
     <div class="dmini">Actions</div>
     <ul class="dacts" id="dacts"></ul>
     <div class="dreason" id="dreason"></div>
-    <div style="margin-top:12px">
-      <button class="btn pri" onclick="markDone()">✓ Utfört — ta bort kortet</button>
-    </div>
+    <div style="margin-top:12px"><button class="btn pri" onclick="markDone()">✓ Utfört — ta bort kortet</button></div>
   </div>
 </div>
 </div>
@@ -248,26 +406,58 @@ textarea::placeholder{color:#333}
 const SUITS=['Administration','Aggression','Construction','Mobilization'];
 const SC=['s0','s1','s2','s3'];
 const PIPS={1:1,2:2,3:3,4:3,5:2,6:2,7:1};
-const PCOL=['#888888','#c0392b','#d4800a','#c9a84c'];
+const PCOL=['#888','#c0392b','#d4800a','#c9a84c'];
 const PNAMES=['Grå','Röd','Orange','Guld'];
 const CPOS=[[214,16],[388,114],[388,312],[214,418],[38,312],[38,114]];
 const ALLSYS=[];
 for(let c=1;c<=6;c++){ALLSYS.push('g'+c);['a','b','c'].forEach(p=>ALLSYS.push(c+p));}
+const WIN={2:33,3:30,4:27};
+const AMBITIONS=['Tycoon','Tyrant','Warlord','Keeper','Empath'];
+const MARKERS=['(ingen markör)','5/3 markör','3/2 markör','2/0 markör (blå)','2/0 markör (flippad)'];
 
-let G={pc:3,botIdx:2,strat:'balanced',hand:[],res:[0,0,0,0,0],ambs:[],oop:new Set(),map:{},lastDec:null};
+let G={
+  pc:3,botIdx:2,strat:'balanced',
+  hand:[],res:[0,0,0,0,0],ambs:[],oop:new Set(),
+  map:{},lastDec:null,chapter:1,
+  power:[0,0,0,0],
+  trophies:0,captives:0,
+  botOutrage:new Set(),
+  guildCards:'',loreCards:'',
+  markers:{a5:true,a3:true,a2:true,flipped:false},
+  botCities:{built:0,plus2:false,plus5:false},
+  ambBoxes:{Tycoon:0,Tyrant:0,Warlord:0,Keeper:0,Empath:0},
+  courtCards:[],
+  opponents:[]
+};
 ALLSYS.forEach(s=>{G.map[s]={fr:[0,0,0,0],dm:[0,0,0,0],ci:[0,0,0,0],sp:[0,0,0,0]};});
 
+function pName(p){return p===G.botIdx?'Bot':PNAMES[p];}
+
+// ---- SETUP ----
 function setPC(n){
   G.pc=n;G.botIdx=n-1;
   document.querySelectorAll('#pcb .btn').forEach((b,i)=>b.classList.toggle('on',[2,3,4][i]===n));
   document.getElementById('pci').textContent=n===4?'Med 4 spelare används kort 1–7.':'Med '+n+' spelare används kort 2–6.';
-  renderPicker();
+  renderPicker();buildPwSetup();
 }
 function setSt(s){
   G.strat=s;
   document.querySelectorAll('#stb .btn').forEach((b,i)=>b.classList.toggle('on',['aggressive','balanced','economic'][i]===s));
-  const d={aggressive:'Krigarstil: prioriterar battle och Warlord.',balanced:'Adaptiv: väljer efter situationen.',economic:'Handelsfokus: resurser och ekonomiska ambitioner.'};
+  const d={aggressive:'Krigarstil: battle, trophies, Warlord.',balanced:'Adaptiv: bästa drag efter läget.',economic:'Handelsfokus: resurser och ekonomiska ambitioner.'};
   document.getElementById('sti').textContent=d[s];
+}
+function setChap(n){G.chapter=n;document.querySelectorAll('#chapb .btn').forEach((b,i)=>b.classList.toggle('on',i+1===n));}
+function togMk(btn){btn.classList.toggle('on');G.markers['a'+btn.dataset.v]=btn.classList.contains('on');}
+function togFlip(btn){G.markers.flipped=!G.markers.flipped;btn.classList.toggle('on',G.markers.flipped);btn.textContent=G.markers.flipped?'✓ Lägsta markör flippad':'Lägsta markör är flippad (mer Power)';}
+function buildPwSetup(){
+  const d=document.getElementById('pwsetup');d.innerHTML='';
+  for(let p=0;p<G.pc;p++){
+    const row=document.createElement('div');row.className='pwrow';
+    const lbl=document.createElement('span');lbl.className='pwlbl';lbl.style.color=PCOL[p];lbl.textContent=pName(p);
+    const inp=document.createElement('input');inp.type='number';inp.min=0;inp.max=50;inp.value=0;
+    inp.style.cssText='width:52px;background:var(--s2);border:1px solid var(--bord);color:var(--text);font-size:14px;text-align:center;padding:3px;border-radius:2px';
+    inp.id='pw'+p;row.appendChild(lbl);row.appendChild(inp);d.appendChild(row);
+  }
 }
 function renderPicker(){
   const min=G.pc===4?1:2,max=G.pc===4?7:6;
@@ -300,17 +490,35 @@ function randH(){
   pool.sort(()=>Math.random()-.5);G.hand=pool.slice(0,6);renderPicker();
 }
 function togA(btn){btn.classList.toggle('on');const a=btn.dataset.a;const i=G.ambs.indexOf(a);if(i>=0)G.ambs.splice(i,1);else G.ambs.push(a);}
+
 function startGame(){
   if(G.hand.length!==6){alert('Välj exakt 6 kort.');return;}
   G.res=['r0','r1','r2','r3','r4'].map(id=>parseInt(document.getElementById(id).value)||0);
   ['tr0','tr1','tr2','tr3','tr4'].forEach((id,i)=>document.getElementById(id).value=G.res[i]);
-  buildLN();renderMap();renderHand();
-  document.getElementById('psub').textContent=`${G.pc} spelare · Bot = ${PNAMES[G.botIdx]}`;
+  for(let p=0;p<G.pc;p++)G.power[p]=parseInt(document.getElementById('pw'+p).value)||0;
+  G.guildCards=document.getElementById('gcards').value.trim();
+  G.loreCards=document.getElementById('lcards').value.trim();
+  G.botCities.built=parseInt(document.getElementById('bcities').value)||0;
+  document.getElementById('tcities').value=G.botCities.built;
+  document.getElementById('tgcards').value=G.guildCards;
+  document.getElementById('tlcards').value=G.loreCards;
+  G.opponents=[];
+  for(let p=0;p<G.pc;p++){
+    if(p===G.botIdx)continue;
+    G.opponents.push({idx:p,name:PNAMES[p],trophies:0,captives:0,cardsLeft:6,outrage:new Set(),guildCards:'',loreCards:''});
+  }
+  // default court cards
+  const n=G.pc===2?3:4;
+  G.courtCards=Array.from({length:n},()=>({name:'',agents:Array(G.pc).fill(0)}));
+  buildLN();renderMap();renderHand();renderPwBars();renderOppSec();renderAmbBoxes();renderCourtCards();
+  document.getElementById('psub').textContent=`Kapitel ${G.chapter} · Bot = ${PNAMES[G.botIdx]}`;
   showScr('s1');
 }
-function backSetup(){renderPicker();showScr('s0');}
+function backSetup(){renderPicker();buildPwSetup();showScr('s0');}
 function newChap(){G.hand=[];G.ambs=[];document.querySelectorAll('.ab').forEach(b=>b.classList.remove('on'));renderPicker();showScr('s0');}
 function showScr(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+
+// ---- TABS ----
 function showTab(t){
   document.getElementById('tab-map').classList.toggle('hidden',t!=='map');
   document.getElementById('tab-turn').classList.toggle('hidden',t!=='turn');
@@ -318,42 +526,108 @@ function showTab(t){
   closeEP();
 }
 
+// ---- AMBITION BOXES ----
+function renderAmbBoxes(){
+  const d=document.getElementById('ambboxes');d.innerHTML='';
+  AMBITIONS.forEach(amb=>{
+    const row=document.createElement('div');row.className='ambbox-row';
+    const lbl=document.createElement('span');lbl.className='ambbox-lbl';lbl.textContent=amb;
+    const sel=document.createElement('select');sel.className='ambbox-sel';
+    MARKERS.forEach((m,i)=>{const o=document.createElement('option');o.value=i;o.textContent=m;sel.appendChild(o);});
+    sel.value=G.ambBoxes[amb]||0;
+    sel.onchange=()=>{G.ambBoxes[amb]=parseInt(sel.value);};
+    row.appendChild(lbl);row.appendChild(sel);d.appendChild(row);
+  });
+}
+
+// ---- COURT CARDS ----
+function renderCourtCards(){
+  const d=document.getElementById('courtcards');d.innerHTML='';
+  G.courtCards.forEach((cc,ci)=>{
+    const row=document.createElement('div');row.className='ccard';
+    const namew=document.createElement('div');namew.className='ccname';
+    const inp=document.createElement('input');inp.type='text';inp.placeholder='Kortnamn...';inp.value=cc.name;
+    inp.oninput=()=>G.courtCards[ci].name=inp.value;
+    namew.appendChild(inp);
+    const agents=document.createElement('div');agents.className='agdots';
+    for(let p=0;p<G.pc;p++){
+      const dot=document.createElement('div');dot.style.cssText=`width:6px;height:6px;border-radius:50%;background:${PCOL[p]};flex-shrink:0`;
+      const sp=document.createElement('div');sp.className='agsp';
+      const bm=document.createElement('button');bm.textContent='−';bm.onclick=()=>{G.courtCards[ci].agents[p]=Math.max(0,G.courtCards[ci].agents[p]-1);spn.textContent=G.courtCards[ci].agents[p];};
+      const spn=document.createElement('span');spn.textContent=cc.agents[p]||0;spn.style.color=PCOL[p];
+      const bp=document.createElement('button');bp.textContent='+';bp.onclick=()=>{G.courtCards[ci].agents[p]=(G.courtCards[ci].agents[p]||0)+1;spn.textContent=G.courtCards[ci].agents[p];};
+      sp.appendChild(dot);sp.appendChild(bm);sp.appendChild(spn);sp.appendChild(bp);
+      agents.appendChild(sp);
+    }
+    const del=document.createElement('button');del.className='btn xs';del.textContent='✕';del.onclick=()=>{G.courtCards.splice(ci,1);renderCourtCards();};
+    row.appendChild(namew);row.appendChild(agents);row.appendChild(del);d.appendChild(row);
+  });
+}
+function addCourtCard(){G.courtCards.push({name:'',agents:Array(G.pc).fill(0)});renderCourtCards();}
+
+// ---- OPPONENTS UI ----
+function renderOppSec(){
+  const d=document.getElementById('oppsec');d.innerHTML='';
+  G.opponents.forEach((op,oi)=>{
+    const div=document.createElement('div');div.className='opsec';div.style.borderLeftColor=PCOL[op.idx];
+    div.innerHTML=`
+      <div class="oplbl" style="color:${PCOL[op.idx]}">${op.name}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <div class="ri"><label>Trophies</label><input type="number" class="sm" style="width:52px" value="0" oninput="G.opponents[${oi}].trophies=parseInt(this.value)||0"></div>
+        <div class="ri"><label>Captives</label><input type="number" class="sm" style="width:52px" value="0" oninput="G.opponents[${oi}].captives=parseInt(this.value)||0"></div>
+        <div class="ri"><label>Kort kvar</label><input type="number" class="sm" style="width:52px" value="6" oninput="G.opponents[${oi}].cardsLeft=parseInt(this.value)||0"></div>
+      </div>
+      <div class="stl" style="margin-bottom:3px">Outrage</div>
+      <div class="outrow">${['Material','Fuel','Weapon','Relic','Psionic'].map(r=>`<button class="outr" data-r="${r}" onclick="togOut(this,'opp',${oi})">${r}</button>`).join('')}</div>
+      <div class="rg2" style="margin-top:8px">
+        <div>
+          <div class="stl" style="margin-bottom:3px">Guild-kort</div>
+          <textarea style="min-height:36px;font-size:12px" placeholder="Kortnamn..." oninput="G.opponents[${oi}].guildCards=this.value.trim()"></textarea>
+        </div>
+        <div>
+          <div class="stl" style="margin-bottom:3px">Lore-kort</div>
+          <textarea style="min-height:36px;font-size:12px" placeholder="Kortnamn..." oninput="G.opponents[${oi}].loreCards=this.value.trim()"></textarea>
+        </div>
+      </div>`;
+    d.appendChild(div);
+  });
+}
+function togOut(btn,who,oi){
+  btn.classList.toggle('on');const r=btn.dataset.r;
+  if(who==='bot'){if(btn.classList.contains('on'))G.botOutrage.add(r);else G.botOutrage.delete(r);}
+  else{if(btn.classList.contains('on'))G.opponents[oi].outrage.add(r);else G.opponents[oi].outrage.delete(r);}
+}
+
+// ---- MAP ----
 function sysLabel(s){return s[0]==='g'?'Gate '+s[1]:'Planet '+s[0]+s[1].toUpperCase();}
 function renderMap(){
-  const outer=document.getElementById('mouter');
-  outer.querySelectorAll('.cl').forEach(e=>e.remove());
+  const outer=document.getElementById('mouter');outer.querySelectorAll('.cl').forEach(e=>e.remove());
   const svg=document.getElementById('msvg');svg.innerHTML='';
   const gc=CPOS.map(([l,t])=>[l+66,t+32]);
   [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]].forEach(([a,b])=>{
     const line=document.createElementNS('http://www.w3.org/2000/svg','line');
     line.setAttribute('x1',gc[a][0]);line.setAttribute('y1',gc[a][1]);
     line.setAttribute('x2',gc[b][0]);line.setAttribute('y2',gc[b][1]);
-    line.setAttribute('stroke','#2e2a1a');line.setAttribute('stroke-width','1.5');
-    line.setAttribute('stroke-dasharray','5,4');svg.appendChild(line);
+    const oop=G.oop.has(a+1)||G.oop.has(b+1);
+    line.setAttribute('stroke',oop?'#c9a84c44':'#2e2a1a');
+    line.setAttribute('stroke-width',oop?'2':'1.5');
+    line.setAttribute('stroke-dasharray',oop?'8,4':'5,4');svg.appendChild(line);
   });
   const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
   txt.setAttribute('x','280');txt.setAttribute('y','268');txt.setAttribute('text-anchor','middle');
-  txt.setAttribute('font-family','Georgia,serif');txt.setAttribute('font-size','22');
-  txt.setAttribute('letter-spacing','8');txt.setAttribute('fill','#2a2518');txt.textContent='ARCS';
-  svg.appendChild(txt);
+  txt.setAttribute('font-family','Georgia,serif');txt.setAttribute('font-size','22');txt.setAttribute('letter-spacing','8');txt.setAttribute('fill','#2a2518');txt.textContent='ARCS';svg.appendChild(txt);
   for(let c=1;c<=6;c++){
-    const [l,t]=CPOS[c-1];
-    const card=document.createElement('div');card.className='cl';card.id='cl'+c;
-    if(G.oop.has(c))card.classList.add('oop');
-    card.style.cssText=`left:${l}px;top:${t}px`;
+    const [l,t]=CPOS[c-1];const card=document.createElement('div');card.className='cl';card.id='cl'+c;
+    if(G.oop.has(c))card.classList.add('oop');card.style.cssText=`left:${l}px;top:${t}px`;
     const hdr=document.createElement('div');hdr.className='clhdr';
     hdr.innerHTML=`<span class="cln">Cluster ${c}</span><button class="oopt${G.oop.has(c)?' on':''}" onclick="togOOP(${c},this)">${G.oop.has(c)?'OoP':'aktiv'}</button>`;
     card.appendChild(hdr);
-    const gate=document.createElement('div');gate.className='gaten';gate.id='n-g'+c;
-    gate.onclick=()=>openEP('g'+c,gate);
-    gate.innerHTML=`<div class="nl">GATE ${c}</div><div class="np" id="np-g${c}"></div><div class="nb" id="nb-g${c}"></div>`;
-    card.appendChild(gate);
+    const gate=document.createElement('div');gate.className='gaten';gate.id='n-g'+c;gate.onclick=()=>openEP('g'+c,gate);
+    gate.innerHTML=`<div class="nl">GATE ${c}</div><div class="np" id="np-g${c}"></div><div class="nb" id="nb-g${c}"></div>`;card.appendChild(gate);
     const prow=document.createElement('div');prow.className='plrow';
     ['a','b','c'].forEach(p=>{
-      const pn=document.createElement('div');pn.className='pln';pn.id=`n-${c}${p}`;
-      pn.onclick=()=>openEP(c+p,pn);
-      pn.innerHTML=`<div class="nl">${p.toUpperCase()}</div><div class="np" id="np-${c}${p}"></div><div class="nb" id="nb-${c}${p}"></div>`;
-      prow.appendChild(pn);
+      const pn=document.createElement('div');pn.className='pln';pn.id=`n-${c}${p}`;pn.onclick=()=>openEP(c+p,pn);
+      pn.innerHTML=`<div class="nl">${p.toUpperCase()}</div><div class="np" id="np-${c}${p}"></div><div class="nb" id="nb-${c}${p}"></div>`;prow.appendChild(pn);
     });
     card.appendChild(prow);outer.appendChild(card);
   }
@@ -361,140 +635,201 @@ function renderMap(){
 }
 function refreshAll(){ALLSYS.forEach(refreshNode);}
 function refreshNode(s){
-  const st=G.map[s];
-  const np=document.getElementById('np-'+s);const nb=document.getElementById('nb-'+s);
-  if(!np||!nb)return;
-  np.innerHTML='';
-  for(let p=0;p<G.pc;p++){
-    const tot=st.fr[p]+st.dm[p];
-    if(tot>0){const dot=document.createElement('span');dot.className='ndot';dot.style.background=PCOL[p];dot.style.color='#000';dot.textContent=tot;if(st.dm[p]>0&&st.fr[p]===0)dot.classList.add('ndotD');np.appendChild(dot);}
-  }
+  const st=G.map[s];const np=document.getElementById('np-'+s);const nb=document.getElementById('nb-'+s);
+  if(!np||!nb)return;np.innerHTML='';
+  for(let p=0;p<G.pc;p++){const tot=st.fr[p]+st.dm[p];if(tot>0){const dot=document.createElement('span');dot.className='ndot';dot.style.background=PCOL[p];dot.style.color='#000';dot.textContent=tot;if(st.dm[p]>0&&st.fr[p]===0)dot.classList.add('ndotD');np.appendChild(dot);}}
   nb.innerHTML='';
-  for(let p=0;p<G.pc;p++){
-    if(st.ci[p]){const ic=document.createElement('span');ic.className='nic';ic.style.color=PCOL[p];ic.textContent='■';nb.appendChild(ic);}
-    if(st.sp[p]){const ic=document.createElement('span');ic.className='nic';ic.style.color=PCOL[p];ic.textContent='△';nb.appendChild(ic);}
-  }
+  for(let p=0;p<G.pc;p++){if(st.ci[p]){const ic=document.createElement('span');ic.className='nic';ic.style.color=PCOL[p];ic.textContent='■';nb.appendChild(ic);}if(st.sp[p]){const ic=document.createElement('span');ic.className='nic';ic.style.color=PCOL[p];ic.textContent='△';nb.appendChild(ic);}}
 }
 function togOOP(c,btn){
-  if(G.oop.has(c)){G.oop.delete(c);btn.textContent='aktiv';btn.classList.remove('on');}
-  else{G.oop.add(c);btn.textContent='OoP';btn.classList.add('on');}
-  document.getElementById('cl'+c).classList.toggle('oop',G.oop.has(c));
+  if(G.oop.has(c)){G.oop.delete(c);btn.textContent='aktiv';btn.classList.remove('on');}else{G.oop.add(c);btn.textContent='OoP';btn.classList.add('on');}
+  document.getElementById('cl'+c).classList.toggle('oop',G.oop.has(c));renderMap();
 }
 
+// ---- EDIT PANEL ----
 let activeNode=null;
 function openEP(s,el){
   if(activeNode===s){closeEP();return;}
-  activeNode=s;
-  document.querySelectorAll('.act').forEach(e=>e.classList.remove('act'));
-  el.classList.add('act');
-  const st=G.map[s];
-  const panel=document.getElementById('epan');
-  const botLabel=p=>p===G.botIdx?'BOT':PNAMES[p];
-  panel.innerHTML=`
-    <div class="ephdr"><span class="eptitle">${sysLabel(s)}</span><button class="epx" onclick="closeEP()">×</button></div>
-    <div class="epmini">⬛ färska &nbsp;&nbsp; 💥 skadade &nbsp;&nbsp; ■ stad &nbsp;&nbsp; △ starport</div>
-    ${Array.from({length:G.pc},(_,p)=>`
-    <div class="eprow">
-      <span class="eppn" style="color:${PCOL[p]}">${botLabel(p)}</span>
-      <div class="sp"><button onclick="adj('${s}','fr',${p},-1)">−</button><span id="ef-${s}-${p}">${st.fr[p]}</span><button onclick="adj('${s}','fr',${p},1)">+</button></div>
-      <div class="sp"><button onclick="adj('${s}','dm',${p},-1)">−</button><span id="ed-${s}-${p}">${st.dm[p]}</span><button onclick="adj('${s}','dm',${p},1)">+</button></div>
-      <button class="blt${st.ci[p]?' on':''}" onclick="togB('${s}','ci',${p},this)">■</button>
-      <button class="blt${st.sp[p]?' on':''}" onclick="togB('${s}','sp',${p},this)">△</button>
-    </div>`).join('')}`;
+  activeNode=s;document.querySelectorAll('.act').forEach(e=>e.classList.remove('act'));el.classList.add('act');
+  const st=G.map[s];const panel=document.getElementById('epan');
+  panel.innerHTML=`<div class="ephdr"><span class="eptitle">${sysLabel(s)}</span><button class="epx" onclick="closeEP()">×</button></div><div class="epmini">⬛ färska &nbsp; 💥 skadade &nbsp; ■ stad &nbsp; △ starport</div>${Array.from({length:G.pc},(_,p)=>`<div class="eprow"><span class="eppn" style="color:${PCOL[p]}">${pName(p)}</span><div class="sp"><button onclick="adj('${s}','fr',${p},-1)">−</button><span id="ef-${s}-${p}">${st.fr[p]}</span><button onclick="adj('${s}','fr',${p},1)">+</button></div><div class="sp"><button onclick="adj('${s}','dm',${p},-1)">−</button><span id="ed-${s}-${p}">${st.dm[p]}</span><button onclick="adj('${s}','dm',${p},1)">+</button></div><button class="blt${st.ci[p]?' on':''}" onclick="togB('${s}','ci',${p},this)">■</button><button class="blt${st.sp[p]?' on':''}" onclick="togB('${s}','sp',${p},this)">△</button></div>`).join('')}`;
   panel.classList.remove('hidden');
-  const rect=el.getBoundingClientRect();const pw=218,ph=55+G.pc*40;
+  const rect=el.getBoundingClientRect();const pw=222,ph=60+G.pc*40;
   let top=rect.bottom+8,left=rect.left;
-  if(top+ph>window.innerHeight-10)top=rect.top-ph-8;
-  if(left+pw>window.innerWidth-10)left=window.innerWidth-pw-10;
+  if(top+ph>window.innerHeight-10)top=rect.top-ph-8;if(left+pw>window.innerWidth-10)left=window.innerWidth-pw-10;
   panel.style.top=Math.max(10,top)+'px';panel.style.left=Math.max(10,left)+'px';
 }
 function closeEP(){activeNode=null;document.getElementById('epan').classList.add('hidden');document.querySelectorAll('.act').forEach(e=>e.classList.remove('act'));}
 function adj(s,f,p,d){G.map[s][f][p]=Math.max(0,G.map[s][f][p]+d);document.getElementById((f==='fr'?'ef':'ed')+'-'+s+'-'+p).textContent=G.map[s][f][p];refreshNode(s);}
 function togB(s,f,p,btn){G.map[s][f][p]=G.map[s][f][p]?0:1;btn.classList.toggle('on',!!G.map[s][f][p]);refreshNode(s);}
-document.addEventListener('click',e=>{
-  const ep=document.getElementById('epan');
-  if(!ep.classList.contains('hidden')&&!ep.contains(e.target)&&!e.target.closest('.gaten')&&!e.target.closest('.pln')&&!e.target.closest('.oopt'))closeEP();
-});
+document.addEventListener('click',e=>{const ep=document.getElementById('epan');if(!ep.classList.contains('hidden')&&!ep.contains(e.target)&&!e.target.closest('.gaten')&&!e.target.closest('.pln')&&!e.target.closest('.oopt'))closeEP();});
 
-function buildLN(){
-  const sel=document.getElementById('ln');const min=G.pc===4?1:2,max=G.pc===4?7:6;
-  sel.innerHTML='';for(let n=min;n<=max;n++){const o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);}
-}
+// ---- TURN ----
+function buildLN(){const sel=document.getElementById('ln');const min=G.pc===4?1:2,max=G.pc===4?7:6;sel.innerHTML='';for(let n=min;n<=max;n++){const o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);}}
 let hasInit=false;
-function setInit(v){
-  hasInit=v;
-  document.getElementById('iy').classList.toggle('on',v);
-  document.getElementById('in').classList.toggle('on',!v);
-  document.getElementById('lsec').style.display=v?'none':'block';
-}
+function setInit(v){hasInit=v;document.getElementById('iy').classList.toggle('on',v);document.getElementById('in').classList.toggle('on',!v);document.getElementById('lsec').style.display=v?'none':'block';}
 function renderHand(){
-  const d=document.getElementById('hchs');d.innerHTML='';
-  if(!G.hand.length){d.innerHTML='<span style="color:var(--dim);font-size:12px">Inga kort kvar — starta nytt kapitel.</span>';return;}
+  const d=document.getElementById('hchs');d.innerHTML='';const hl=document.getElementById('handleft');
+  if(!G.hand.length){d.innerHTML='<span style="color:var(--dim);font-size:12px">Inga kort kvar — starta nytt kapitel.</span>';if(hl)hl.textContent='';return;}
+  if(hl)hl.textContent=`(${G.hand.length} kvar)`;
   G.hand.forEach(c=>{const sp=document.createElement('span');sp.className='hch '+SC[c.si];sp.textContent=SUITS[c.si].substring(0,2).toUpperCase()+' '+c.n;d.appendChild(sp);});
 }
+function renderPwBars(){
+  const d=document.getElementById('pwbars');if(!d)return;d.innerHTML='';const win=WIN[G.pc]||27;
+  for(let p=0;p<G.pc;p++){
+    const row=document.createElement('div');row.className='pwrow';
+    const lbl=document.createElement('span');lbl.className='pwlbl';lbl.style.color=PCOL[p];lbl.textContent=pName(p);
+    const bar=document.createElement('div');bar.className='pwbar';
+    const fill=document.createElement('div');fill.className='pwfill';fill.style.background=PCOL[p];fill.style.width=Math.min(100,G.power[p]/win*100)+'%';bar.appendChild(fill);
+    const inp=document.createElement('input');inp.type='number';inp.min=0;inp.max=50;inp.value=G.power[p];
+    inp.style.cssText='width:44px;background:var(--s2);border:1px solid var(--bord);color:'+PCOL[p]+';font-size:12px;text-align:center;padding:2px;border-radius:2px';
+    inp.oninput=((pp,f)=>function(){G.power[pp]=parseInt(this.value)||0;f.style.width=Math.min(100,G.power[pp]/win*100)+'%';})(p,fill);
+    row.appendChild(lbl);row.appendChild(bar);row.appendChild(inp);d.appendChild(row);
+  }
+}
+
 function mapToText(){
-  const pn=p=>p===G.botIdx?'Bot':PNAMES[p];let txt='';
+  function ctrl(s){let mx=-1,mxP=-1;for(let p=0;p<G.pc;p++){if(G.map[s].fr[p]>mx){mx=G.map[s].fr[p];mxP=p;}else if(G.map[s].fr[p]===mx&&mx>0)mxP=-1;}return mx>0?mxP:-1;}
+  let paths=[];G.oop.forEach(c=>{const prev=c===1?6:c-1;const next=c===6?1:c+1;paths.push(`Gate ${prev} ↔ Gate ${next} via OoP cluster ${c}`);});
+  let txt='';if(paths.length)txt+='PATH MARKERS: '+paths.join(', ')+'\n\n';
+  let botBldgs=[];ALLSYS.forEach(s=>{if(G.map[s].ci[G.botIdx]||G.map[s].sp[G.botIdx])botBldgs.push(sysLabel(s));});
   for(let c=1;c<=6;c++){
-    if(G.oop.has(c)){txt+=`Cluster ${c}: out of play\n`;continue;}
+    if(G.oop.has(c)){txt+=`Cluster ${c}: OUT OF PLAY\n`;continue;}
     txt+=`Cluster ${c}:\n`;
     [['g'+c,`Gate ${c}`],[c+'a',`Planet ${c}A`],[c+'b',`Planet ${c}B`],[c+'c',`Planet ${c}C`]].forEach(([s,lbl])=>{
       const st=G.map[s];let parts=[];
-      for(let p=0;p<G.pc;p++){
-        let pp=[];
-        if(st.fr[p])pp.push(st.fr[p]+(st.fr[p]>1?' fresh ships':' fresh ship'));
-        if(st.dm[p])pp.push(st.dm[p]+(st.dm[p]>1?' damaged ships':' damaged ship'));
-        if(st.ci[p])pp.push('city');if(st.sp[p])pp.push('starport');
-        if(pp.length)parts.push(pn(p)+': '+pp.join(', '));
-      }
-      txt+=`  ${lbl}: ${parts.length?parts.join('; '):'empty'}\n`;
+      for(let p=0;p<G.pc;p++){let pp=[];if(st.fr[p])pp.push(st.fr[p]+' fresh ship'+(st.fr[p]>1?'s':''));if(st.dm[p])pp.push(st.dm[p]+' damaged ship'+(st.dm[p]>1?'s':''));if(st.ci[p])pp.push('city');if(st.sp[p])pp.push('starport');if(pp.length)parts.push(pName(p)+': '+pp.join(', '));}
+      const c2=ctrl(s);txt+=`  ${lbl}${c2>=0?' [ctrl:'+pName(c2)+']':''}: ${parts.length?parts.join('; '):'empty'}\n`;
     });
   }
+  txt+=botBldgs.length?`Bot buildings: ${botBldgs.join(', ')}\n`:`Bot has NO buildings anywhere on map\n`;
   return txt;
 }
 
-const BSYS=`You are playing as the bot player in Arcs (board game by Cole Wehrle, Leder Games). Make specific, actionable decisions. Always name exact systems (e.g. "Gate 3", "Planet 4B"). The human executes your move physically.
+const BSYS=`You are the bot player in Arcs (Cole Wehrle, Leder Games). Make specific tactical decisions as a real human player would. Always name exact systems (Gate N, Planet NC). The human executes your moves physically.
 
-Key rules:
-- Pips: 1→1, 2→2, 3→3, 4→3, 5→2, 6→2, 7→1
-- Admin pips: Tax/Repair/Influence · Aggression: Battle/Move/Secure · Construction: Build/Repair · Mobilization: Move/Influence
-- Surpass=same suit+higher number→all pips on YOUR card. Copy=face-down→1 action of lead. Pivot=different suit→1 action of your suit.
-- Prelude: Material→Build/Repair, Fuel→Move, Weapon→all pips become Battle, Relic→Secure, Psionic→lead action
-- Declare ambition only with initiative: 2=Tycoon,3=Tyrant,4=Warlord,5=Keeper,6=Empath,7=any
-- Move: Loyal ships to adjacent system. From Loyal starport=Catapult: move freely through gates until any planet or enemy-controlled gate
-- Control=most fresh ships in system. Tax: own city OR Rival city you control→1 resource+capture agent
-- Battle: your system with Loyal ships+one Rival+dice (Assault/Skirmish/Raid, 1 per ship)
-- Build: city/starport in empty slot (need Loyal piece) OR ship at Loyal starport
-- Adjacent: gate↔own 3 planets, gate↔2 neighboring cluster gates; planet↔gate+neighboring planets`;
+=== RULES ===
+PIPS: 1→1, 2→2, 3→3, 4→3, 5→2, 6→2, 7→1
+Admin pips: Tax/Repair/Influence · Aggression: Battle/Move/Secure · Construction: Build/Repair · Mobilization: Move/Influence
+PLAY: Lead=all pips · Surpass(same suit+higher number)=all pips on YOUR card · Copy(face-down)=1 lead action · Pivot(diff suit)=1 your action
+SEIZE INITIATIVE (before any actions): extra card face-down OR surpass with 7-card
+DECLARE AMBITION (initiative only, before spending pips): 2=Tycoon,3=Tyrant,4=Warlord,5=Keeper,6=Empath,7=any
+PRELUDE: Material→Build/Repair · Fuel→Move · Weapon→all pips=Battle · Relic→Secure · Psionic→lead action. Cannot spend Outraged resources.
+TAX: own Loyal city OR Rival city you control → 1 resource + capture 1 agent if Rival
+BUILD: city/starport in empty slot (need Loyal piece) OR ship at Loyal starport (1/starport/turn). Enemy controls = placed damaged.
+MOVE: Loyal ships to adjacent system. From Loyal starport=Catapult: through gates freely until any planet or enemy-controlled gate.
+REPAIR: 1 damaged Loyal ship or building (anywhere on map)
+INFLUENCE: 1 agent on any Court card
+SECURE: take Court card if MORE Loyal agents than EACH Rival. Return your agents, capture Rivals' (→ Captives). Resolve When Secured. Draw replacement.
+BATTLE: your system + one Rival defender + dice (1/ship, max 6 each type). Raid dice only if defending buildings in battle system OR defender has no buildings anywhere on map.
+  Assault=damage fast/risk self · Skirmish=slow/safe · Raid=steal resources/cards/risky
+  Resolve: self-hits → intercept (1 hit per fresh defending ship) → defender ship hits → defender building hits → raids
+CONTROL: most fresh ships in system
+OUTRAGE: city destroyed → discard all resources+guild cards of that type, place Outrage agent. Cannot spend Outraged in Prelude. Ransack Court.
+ADJACENCY: gate↔own 3 planets + neighboring cluster gates · planet↔gate + neighboring planets · path marker = 2 neighboring gates adjacent
+SCORING: Tycoon=most Fuel+Material(+guild suits) · Tyrant=most Captives · Warlord=most Trophies · Keeper=most Relics(+guild) · Empath=most Psionics(+guild)
+1st=high marker value, 2nd=low. Tied 1st=both get 2nd. Must have ≥1 to qualify.
+BONUS POWER: +2 extra for solo 1st if +2-slot uncovered; +5 total extra if both slots uncovered (not cumulative).
+GUILD CARDS: apply their text. Suit counts toward ambitions (Weapon=nothing). Prelude actions/new actions/modifiers on cards override base rules.
+LORE CARDS: persistent powers — apply their text to all relevant decisions.
+COURT: Influence (place agent) + Secure (take card if most agents). When Secured effects resolve immediately. Vox cards discard after resolving.`;
 
 async function askBot(){
   if(!G.hand.length){alert('Inga kort kvar.');return;}
-  const hand=G.hand.map(c=>`${SUITS[c.si]} ${c.n} (${PIPS[c.n]}pip)`).join(', ');
+  const hand=G.hand.map(c=>`${SUITS[c.si]} ${c.n} (${PIPS[c.n]}p)`).join(', ');
   const res=['tr0','tr1','tr2','tr3','tr4'].map(id=>parseInt(document.getElementById(id).value)||0);
   const rn=['Material','Fuel','Weapon','Relic','Psionic'];
-  const resStr=res.map((v,i)=>v?v+' '+rn[i]:null).filter(Boolean).join(', ')||'none';
-  const board=mapToText();const ambs=G.ambs.length?G.ambs.join(', '):'none declared';
+  const resStr=res.map((v,i)=>v?`${v} ${rn[i]}`:null).filter(Boolean).join(', ')||'none';
+  const tro=parseInt(document.getElementById('ttro').value)||0;
+  const cap=parseInt(document.getElementById('tcap').value)||0;
+  const cities=parseInt(document.getElementById('tcities').value)||0;
+  G.botCities.built=cities;
+  const citiesStr=`${cities} built, ${G.botCities.plus2?'+2 bonus slot uncovered':''}${G.botCities.plus5?', +5 bonus slot uncovered (both)':''}`;
+  const gcards=document.getElementById('tgcards').value.trim();
+  const lcards=document.getElementById('tlcards').value.trim();
+  const outStr=G.botOutrage.size?[...G.botOutrage].join(', '):'none';
+  const chaplog=document.getElementById('chaplog').value.trim();
   const extra=document.getElementById('ctx').value.trim();
-  const sd={aggressive:'Aggressive: attack, trophies, Warlord.',balanced:'Balanced: adapt to board.',economic:'Economic: build, resources, Tycoon/Keeper/Empath.'};
+  const win=WIN[G.pc]||27;
+  const pwStr=Array.from({length:G.pc},(_,p)=>`${pName(p)}: ${G.power[p]}/${win}`).join(', ');
+  const mkStr=[G.markers.a5?'5/3':null,G.markers.a3?'3/2':null,G.markers.a2?'2/0':null].filter(Boolean).join(', ')||'none';
+  const ambs=G.ambs.length?G.ambs.join(', '):'none declared';
+  const board=mapToText();
   const leadInfo=hasInit?'Bot HAS initiative — plays lead card.':`Lead: ${document.getElementById('ls').value} ${document.getElementById('ln').value}. Bot does NOT have initiative.`;
-  const prompt=`BOARD:\n${board}\nBot hand: ${hand}\nBot resources: ${resStr}\n${leadInfo}\nDeclared ambitions: ${ambs}\nStrategy: ${sd[G.strat]}\n${extra?'Extra: '+extra:''}\n\nRespond ONLY:\nCARD: [suit] [number]\nPLAY_TYPE: [Lead/Surpass/Copy/Pivot]\nDECLARE_AMBITION: [none or name]\nSEIZE_INITIATIVE: [yes/no]\nPRELUDE: [resource use or none]\nACTION_1: [specific with system names]\nACTION_2: [specific or none]\nACTION_3: [specific or none]\nREASONING: [1-2 sentences]`;
+  const sd={aggressive:'Play aggressively: battle, destroy pieces, trophies, Warlord.',balanced:'Play adaptively: best action for current board state.',economic:'Play economically: build cities, resources, Tycoon/Keeper/Empath.'};
+
+  // Ambition box summary
+  const ambBoxStr=AMBITIONS.map(a=>{const v=G.ambBoxes[a]||0;return v>0?`${a}: ${MARKERS[v]}`:`${a}: empty`;}).join(' · ');
+
+  // Court summary
+  const courtStr=G.courtCards.filter(cc=>cc.name).map(cc=>{
+    const agStr=Array.from({length:G.pc},(_,p)=>cc.agents[p]>0?`${pName(p)}:${cc.agents[p]}`:null).filter(Boolean).join(',');
+    return `"${cc.name}"${agStr?` [agents: ${agStr}]`:''}`;
+  }).join(', ')||'(not specified)';
+
+  // Opponent summary
+  const oppStr=G.opponents.map(op=>{
+    const out=op.outrage.size?[...op.outrage].join(','):'none';
+    return `${op.name}: power=${G.power[op.idx]}, trophies=${op.trophies}, captives=${op.captives}, cards left=${op.cardsLeft}, outrage=${out}, guild=[${op.guildCards||'unknown'}], lore=[${op.loreCards||'none'}]`;
+  }).join('\n');
+
+  const prompt=`=== GAME STATE ===
+Chapter: ${G.chapter}/5 · Strategy: ${sd[G.strat]}
+Power: ${pwStr} (win at ${win})
+Ambition markers available: ${mkStr}${G.markers.flipped?' [lowest flipped to higher value]':''}
+Ambition boxes: ${ambBoxStr}
+Declared ambitions: ${ambs}
+
+=== BOT ===
+Hand (${G.hand.length} cards left this chapter): ${hand}
+Resources: ${resStr}
+Trophies: ${tro} | Captives: ${cap}
+Cities: ${citiesStr}
+Outraged: ${outStr}
+Guild cards: ${gcards||'none'}
+Lore cards: ${lcards||'none'}
+
+=== OPPONENTS ===
+${oppStr||'(none)'}
+
+=== COURT ROW ===
+${courtStr}
+
+=== BOARD ===
+${board}
+${chaplog?`=== CHAPTER LOG ===\n${chaplog}\n`:''}
+${leadInfo}
+${extra?`Note: ${extra}`:''}
+
+Make the bot's move. Name exact systems. Apply all guild/lore card abilities. Use ambition box info to judge value of winning each ambition. Consider opponents' card counts when deciding initiative. Check raid dice eligibility from bot buildings above.
+
+Reply ONLY:
+CARD: [suit] [number]
+PLAY_TYPE: [Lead/Surpass/Copy/Pivot]
+DECLARE_AMBITION: [none or name]
+SEIZE_INITIATIVE: [yes/no]
+PRELUDE: [resource actions or none]
+ACTION_1: [specific with exact system name]
+ACTION_2: [specific or none]
+ACTION_3: [specific or none]
+REASONING: [2-3 sentences explaining strategic logic]`;
 
   const btn=document.getElementById('askbtn');const box=document.getElementById('dbox');
   btn.disabled=true;btn.textContent='...';box.style.display='block';
   document.getElementById('dc').innerHTML='<div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
   ['dpt','damb','dpre','dreason'].forEach(id=>document.getElementById(id).textContent='');
   document.getElementById('dacts').innerHTML='';
-
   try{
-    // Calls our own Netlify proxy — API key stays server-side
     const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:BSYS,messages:[{role:'user',content:prompt}]})});
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,system:BSYS,messages:[{role:'user',content:prompt}]})});
     const data=await r.json();
-    parseDec(data.content?.[0]?.text||'Inget svar.');
+    const txt=data.content?.[0]?.text;
+    if(txt)parseDec(txt);else document.getElementById('dc').textContent='Tomt svar — försök igen.';
   }catch(e){document.getElementById('dc').textContent='Fel: '+e.message;}
   btn.disabled=false;btn.textContent='Vad gör boten? →';
 }
 
-function gv(text,key){const m=text.match(new RegExp('^'+key+':\\s*(.+)$','m'));return m?m[1].trim():'';}
+function gv(t,k){const m=t.match(new RegExp('^'+k+':\\s*(.+)$','m'));return m?m[1].trim():'';}
 function parseDec(text){
   const card=gv(text,'CARD'),pt=gv(text,'PLAY_TYPE'),amb=gv(text,'DECLARE_AMBITION');
   const seize=gv(text,'SEIZE_INITIATIVE'),pre=gv(text,'PRELUDE'),reason=gv(text,'REASONING');
@@ -505,6 +840,7 @@ function parseDec(text){
   document.getElementById('dpre').innerHTML=pre&&pre.toLowerCase()!=='none'?`<div class="dmini">Prelude</div><div style="font-size:12px;color:var(--dim);margin-bottom:5px">${pre}</div>`:'';
   const ul=document.getElementById('dacts');
   acts.forEach((a,i)=>{const li=document.createElement('li');li.textContent=(i+1)+'. '+a;ul.appendChild(li);});
+  if(!acts.length){const li=document.createElement('li');li.textContent='(inga actions)';li.style.color='var(--dim)';ul.appendChild(li);}
   document.getElementById('dreason').textContent=reason;
   const parts=card.split(' ');
   G.lastDec={si:SUITS.findIndex(s=>card.startsWith(s)),n:parseInt(parts[parts.length-1])};
@@ -514,10 +850,10 @@ function markDone(){
   const i=G.hand.findIndex(c=>c.si===si&&c.n===n);if(i>=0)G.hand.splice(i,1);
   renderHand();document.getElementById('dbox').style.display='none';
   document.getElementById('ctx').value='';G.lastDec=null;
-  if(!G.hand.length)setTimeout(()=>alert('Bot har spelat alla kort — starta nytt kapitel!'),200);
+  if(!G.hand.length)setTimeout(()=>alert('Bot har spelat alla kort — tryck Nytt kapitel!'),200);
 }
 
-renderPicker();setInit(false);
+renderPicker();buildPwSetup();setInit(false);
 </script>
 </body>
 </html>
